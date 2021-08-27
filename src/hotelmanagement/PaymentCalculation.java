@@ -117,10 +117,9 @@ public class PaymentCalculation extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel7)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtTotalBill, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(txtSave, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(txtSave, javax.swing.GroupLayout.DEFAULT_SIZE, 68, Short.MAX_VALUE)
                                 .addGap(68, 68, 68)
                                 .addComponent(txtUpdate)
                                 .addGap(75, 75, 75)))
@@ -132,27 +131,28 @@ public class PaymentCalculation extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(33, 33, 33)
                                 .addComponent(txtSearch)))
-                        .addContainerGap(19, Short.MAX_VALUE))
+                        .addContainerGap(32, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel4))
-                        .addGap(46, 46, 46)
-                        .addComponent(txtServiceChargers, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel2)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel8))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel8))
-                            .addComponent(jLabel3))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(txtFacilityChargers, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(txtFacilityChargers, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel5)
+                                    .addComponent(jLabel4))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtTotalBill, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtServiceChargers, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGap(232, 232, 232))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -191,7 +191,7 @@ public class PaymentCalculation extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel7)
                             .addComponent(txtTotalBill, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 78, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 80, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtSave)
                             .addComponent(txtUpdate)
@@ -204,18 +204,18 @@ public class PaymentCalculation extends javax.swing.JFrame {
 
     private void txtSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSaveActionPerformed
         try {
-            String pcId = txtPayCalc.getText();
+//            String pcId = txtPayCalc.getText();
             int facilityCharges = Integer.parseInt(txtFacilityChargers.getText());
             int serviceCharges  = Integer.parseInt(txtServiceChargers.getText());
-            int vat  = Integer.parseInt(txtVat.getText());
+//            int vat  = Integer.parseInt(txtVat.getText());
             int totalBill = Integer.parseInt(txtTotalBill.getText());
             
             
             pst = con.prepareStatement("insert into paymentcalculation (payCalId, facilityCharges,serviceCharges, vat, totalBill) values (?,?,?,?,?) ");
-            pst.setString(1, pcId);
+//            pst.setString(1, pcId);
             pst.setInt(2, facilityCharges);
             pst.setInt(3, serviceCharges);
-            pst.setInt(4, vat);
+//            pst.setInt(4, vat);
             pst.setInt(5, totalBill);
             
             
@@ -224,12 +224,12 @@ public class PaymentCalculation extends javax.swing.JFrame {
             
             if (k == 1) {
                 JOptionPane.showMessageDialog(this, "Record Added");
-                txtPayCalc.setText("");
+//                txtPayCalc.setText("");
                 txtFacilityChargers.setText("");
                 txtServiceChargers.setText("");
-                txtVat.setText("");
+//                txtVat.setText("");
                 txtTotalBill.setText("");
-                txtPayCalc.requestFocus();
+//                txtPayCalc.requestFocus();
                 
             }
             else{
@@ -243,18 +243,18 @@ public class PaymentCalculation extends javax.swing.JFrame {
     }//GEN-LAST:event_txtSaveActionPerformed
 
     private void txtSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSearchActionPerformed
-       String pcId = txtPayCalc.getText();
+//       String pcId = txtPayCalc.getText();
 
         try {
             pst = con.prepareStatement("select * from paymentcalculation where payCalId = ? ");
-            pst.setString(1, pcId);
+//            pst.setString(1, pcId);
             rs = pst.executeQuery();
             
             if (rs.next() == true){
-                txtPayCalc.setText(rs.getString(1));
+//                txtPayCalc.setText(rs.getString(1));
                 txtFacilityChargers.setText(rs.getString(2));
                 txtServiceChargers.setText(rs.getString(3));
-                txtVat.setText(rs.getString(4));
+//                txtVat.setText(rs.getString(4));
                 txtTotalBill.setText(rs.getString(5));
                
             }
