@@ -92,6 +92,7 @@ public class StaffRegistration extends javax.swing.JFrame {
         jLabel4.setText("Gender");
 
         comboGender.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Male", "Female" }));
+        comboGender.setSelectedIndex(1);
 
         jLabel5.setText("Phone Number");
 
@@ -114,6 +115,11 @@ public class StaffRegistration extends javax.swing.JFrame {
         });
 
         btnDelete.setText("Delete");
+        btnDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteActionPerformed(evt);
+            }
+        });
 
         btnSearch.setText("Search");
         btnSearch.addActionListener(new java.awt.event.ActionListener() {
@@ -127,41 +133,41 @@ public class StaffRegistration extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(200, 200, 200)
-                .addComponent(jLabel1)
-                .addContainerGap(167, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(49, 49, 49)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(200, 200, 200)
+                        .addComponent(jLabel1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(49, 49, 49)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel7)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel4)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jLabel2))
-                                .addGap(55, 55, 55)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtNic, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(txtEmployeeName)
-                                        .addComponent(txtStaffId)
-                                        .addComponent(comboGender, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(txtPhoneNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(75, 75, 75)
-                        .addComponent(btnSearch)
-                        .addContainerGap(124, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(57, 57, 57)
-                        .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
-                        .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(47, 47, 47))))
+                                    .addComponent(jLabel7)
+                                    .addComponent(jLabel6)
+                                    .addComponent(jLabel5)
+                                    .addComponent(jLabel4)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel3)
+                                            .addComponent(jLabel2))
+                                        .addGap(55, 55, 55)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(txtNic, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                .addComponent(txtEmployeeName)
+                                                .addComponent(txtStaffId)
+                                                .addComponent(comboGender, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addComponent(txtPhoneNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addGap(75, 75, 75)
+                                .addComponent(btnSearch))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(57, 57, 57)
+                                .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(78, 78, 78)
+                                .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(930, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -196,7 +202,7 @@ public class StaffRegistration extends javax.swing.JFrame {
                                 .addGap(46, 46, 46)
                                 .addComponent(jLabel7))
                             .addComponent(txtNic, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 112, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -234,6 +240,7 @@ public class StaffRegistration extends javax.swing.JFrame {
                 txtPhoneNumber.setText("");
                 txtEmail.setText("");
                 txtNic.setText("");
+                comboGender.setSelectedIndex(0);
                txtStaffId.requestFocus();
                 
             }
@@ -262,7 +269,7 @@ public class StaffRegistration extends javax.swing.JFrame {
             if (rs.next() == true){
                 txtStaffId.setText(rs.getString(1));
                 txtEmployeeName.setText(rs.getString(2));
-//                comboGender.set(rs.getString(3));
+                comboGender.setSelectedItem(rs.getString(3));
                 txtPhoneNumber.setText(rs.getString(4));
                 txtEmail.setText(rs.getString(5));
                 txtNic.setText(rs.getString(6));
@@ -277,29 +284,29 @@ public class StaffRegistration extends javax.swing.JFrame {
          try {
             String staffId = txtStaffId.getText();
             String empName = txtEmployeeName.getText();
-//           String gender = comboGender.getItemAt(comboGender.getSelectedIndex());
+            String gender = (String) comboGender.getSelectedItem();
             int phoneNumber = Integer.parseInt(txtPhoneNumber.getText());
             String email = txtEmail.getText();
             String nic = txtNic.getText();
             
-            pst = con.prepareStatement("update staffregistration set staffId = ?, employeeName = ?, phoneNumber = ?, email = ?,nic = ?  where staffId = ?");
-            pst.setString(1, staffId);
-            pst.setString(2, empName);
-//            pst.setString(3, gender);
+            pst = con.prepareStatement("update staffregistration set employeeName = ?, gender = ?, phoneNumber = ?, email = ?,nic = ?  where staffId = ?");
+            pst.setString(1, empName);
+            pst.setString(2, gender);
             pst.setInt(3, phoneNumber);
             pst.setString(4, email);
             pst.setString(5, nic);
+            pst.setString(6, staffId);
             
             int k = pst.executeUpdate();
             
             if (k == 1) {
                 JOptionPane.showMessageDialog(this, "Record Updated");
-                txtStaffId.setText("");
                 txtEmployeeName.setText("");
                 txtPhoneNumber.setText("");
+                comboGender.setSelectedIndex(0);
                 txtEmail.setText("");
                 txtNic.setText("");
-                txtStaffId.requestFocus();
+                txtEmployeeName.requestFocus();
                
                 
             }
@@ -317,6 +324,43 @@ public class StaffRegistration extends javax.swing.JFrame {
     private void txtStaffIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtStaffIdActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtStaffIdActionPerformed
+
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+       
+        
+         try {
+           
+            String sid = txtStaffId.getText();
+            
+            pst = con.prepareStatement("delete from staffregistration where staffId = ?");
+
+            pst.setString(1, sid);
+            int k = pst.executeUpdate();
+            
+            if (k == 1) {
+                JOptionPane.showMessageDialog(this, "Record Deleted");
+                txtEmployeeName.setText("");
+                txtEmail.setText("");
+                txtNic.setText("");
+                txtPhoneNumber.setText("");
+                comboGender.setSelectedItem("");
+                
+                txtEmployeeName.requestFocus();
+               
+                
+            }
+            else{
+                JOptionPane.showMessageDialog(this, "Record deleted  failed");
+            }
+        
+        
+        } catch (SQLException ex) {
+            Logger.getLogger(StaffRegistration.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
+        
+    }//GEN-LAST:event_btnDeleteActionPerformed
 
     /**
      * @param args the command line arguments
