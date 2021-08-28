@@ -100,7 +100,7 @@ public class Login extends javax.swing.JFrame {
         kButton1.setFont(new java.awt.Font("Open Sans SemiBold", 1, 24)); // NOI18N
         kButton1.setkBorderRadius(50);
         kButton1.setkEndColor(new java.awt.Color(255, 234, 0));
-        kButton1.setkForeGround(new java.awt.Color(0, 0, 0));
+        kButton1.setkForeGround(new java.awt.Color(51, 51, 51));
         kButton1.setkHoverEndColor(new java.awt.Color(68, 68, 68));
         kButton1.setkHoverForeGround(new java.awt.Color(255, 234, 0));
         kButton1.setkHoverStartColor(new java.awt.Color(68, 68, 68));
