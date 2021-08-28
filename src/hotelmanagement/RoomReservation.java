@@ -240,7 +240,7 @@ public class RoomReservation extends javax.swing.JFrame {
         
         
         } catch (SQLException ex) {
-            Logger.getLogger(SalaryCalculation.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(RoomReservation.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_txtSaveActionPerformed
 

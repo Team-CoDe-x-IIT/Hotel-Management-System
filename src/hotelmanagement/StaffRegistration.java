@@ -250,7 +250,7 @@ public class StaffRegistration extends javax.swing.JFrame {
         
         
         } catch (SQLException ex) {
-            Logger.getLogger(SalaryCalculation.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(StaffRegistration.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnSaveActionPerformed
 
@@ -343,7 +343,7 @@ public class StaffRegistration extends javax.swing.JFrame {
                 txtEmail.setText("");
                 txtNic.setText("");
                 txtPhoneNumber.setText("");
-                comboGender.setSelectedItem("");
+                comboGender.setSelectedItem(0);
                 
                 txtEmployeeName.requestFocus();
                

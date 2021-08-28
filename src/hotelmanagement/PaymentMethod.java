@@ -94,12 +94,22 @@ public class PaymentMethod extends javax.swing.JFrame {
         });
 
         txtDelete.setText("Delete");
+        txtDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtDeleteActionPerformed(evt);
+            }
+        });
 
         comboReservationType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Hall Reservation", "Room Reservation", " " }));
 
         comboMethod.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Card", "Cash" }));
 
         txtUpdate.setText("Update");
+        txtUpdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtUpdateActionPerformed(evt);
+            }
+        });
 
         txtSave.setText("Pay");
         txtSave.addActionListener(new java.awt.event.ActionListener() {
@@ -231,7 +241,7 @@ public class PaymentMethod extends javax.swing.JFrame {
         
         
         } catch (SQLException ex) {
-            Logger.getLogger(SalaryCalculation.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(PaymentMethod.class.getName()).log(Level.SEVERE, null, ex);
         }
         
     }//GEN-LAST:event_txtSaveActionPerformed
@@ -246,14 +256,87 @@ public class PaymentMethod extends javax.swing.JFrame {
             
             if (rs.next() == true){
                 txtPid.setText(rs.getString(1));
-                txtEmail.setText(rs.getString(2));
-//                comboRoomType.(rs.getString(3));
+                 comboReservationType.setSelectedItem(rs.getString(2));
+               comboMethod.setSelectedItem(rs.getString(3));
+               txtEmail.setText(rs.getString(4));
                
             }
         } catch (SQLException ex) {
-            Logger.getLogger(StaffRegistration.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(PaymentMethod.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnSearchActionPerformed
+
+    private void txtUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUpdateActionPerformed
+        
+        
+        try {
+            String pId = txtPid.getText();
+            String reservationType = (String) comboReservationType.getSelectedItem();
+           String payMethod = (String) comboMethod.getSelectedItem();
+            String email = txtEmail.getText();
+            
+            
+            pst = con.prepareStatement("update payementmethod set reservationType = ? , paymentMethod = ? , email = ? where payId = ?");
+            
+            pst.setString(1, reservationType);
+            pst.setString(2, payMethod);
+            pst.setString(3, email);
+            pst.setString(4, pId);
+           
+            int k = pst.executeUpdate();
+            
+            if (k == 1) {
+                JOptionPane.showMessageDialog(this, "Record updated");
+                
+                txtEmail.setText("");
+                comboReservationType.setSelectedIndex(0);
+                comboMethod.setSelectedIndex(0);
+               
+                
+            }
+            else{
+                JOptionPane.showMessageDialog(this, "Record Updated failed");
+            }
+        
+        
+        } catch (SQLException ex) {
+            Logger.getLogger(PaymentMethod.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_txtUpdateActionPerformed
+
+    private void txtDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDeleteActionPerformed
+       
+        
+         try {
+           
+            String pid = txtPid.getText();
+            
+            pst = con.prepareStatement("delete from payementmethod where payId = ?");
+
+            pst.setString(1, pid);
+            int k = pst.executeUpdate();
+            
+            if (k == 1) {
+                JOptionPane.showMessageDialog(this, "Record Deleted");
+               
+                txtPid.setText("");
+                txtEmail.setText("");
+                comboReservationType.setSelectedItem(0);
+                comboMethod.setSelectedIndex(0);
+                
+               
+                
+            }
+            else{
+                JOptionPane.showMessageDialog(this, "Record deleted  failed");
+            }
+        
+        
+        } catch (SQLException ex) {
+            Logger.getLogger(StaffRegistration.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }//GEN-LAST:event_txtDeleteActionPerformed
 
     /**
      * @param args the command line arguments

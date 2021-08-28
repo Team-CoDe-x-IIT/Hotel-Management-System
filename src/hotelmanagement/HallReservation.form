@@ -94,7 +94,7 @@
                   <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
                   <Component id="dateReservationDate" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="150" max="32767" attributes="0"/>
+              <EmptySpace pref="118" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="txtSave" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
                   <Component id="txtUpdate" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
