@@ -18,6 +18,7 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -33,6 +34,7 @@ public class GuestDetails extends javax.swing.JFrame {
         Connect() ;
         Color col = new Color(255, 255, 200);
         getContentPane().setBackground(col);
+        showUser();
  }
 
     
@@ -53,17 +55,61 @@ public class GuestDetails extends javax.swing.JFrame {
     }
     
     
-//    public ArrayList <Guest> guestList(){
-//        try {
-//            ArrayList <Guest> guestList = new ArrayList<>();
-//            String query1 = "SELECT * FROM guestdetails";
-//            st = con.createStatement();
-//            rs = st.executeQuery(query1);
-//        } catch (SQLException ex) {
-//            Logger.getLogger(GuestDetails.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//        
-//    }
+    public ArrayList <Guest> guestList(){
+        ArrayList <Guest> guestsList = new ArrayList<>();
+        try {
+            
+            String query1 = "SELECT * FROM guestdetails";
+            st = con.createStatement();
+            rs = st.executeQuery(query1);
+            Guest guest;
+            while(rs.next()){
+                guest = new Guest (
+                        
+                        rs.getString("guestId"),
+                        rs.getString("name"),
+                        rs.getString("type"),
+                        rs.getString("nic"),
+                        rs.getInt("phoneNumber"),
+                        rs.getString("email"),
+                        rs.getString("packageType"),
+                        rs.getBoolean("swimming"),
+                        rs.getBoolean("gym"),
+                        rs.getBoolean("diving"),
+                        rs.getBoolean("boatRide")
+                        
+                );
+                guestsList.add(guest);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(GuestDetails.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return guestsList;
+        
+    }
+    
+    public void showUser() {
+        ArrayList <Guest> list = guestList();
+        DefaultTableModel model = ( DefaultTableModel)guestTable.getModel();
+        Object [] row = new Object[11];
+        for (int i = 0; i < list.size(); i++){
+            row[0] = list.get(i).getGuestId();
+            row[1] = list.get(i).getName();
+            row[2] = list.get(i).getType();
+            row[3] = list.get(i).getNic();
+            row[4] = list.get(i).getPhoneNumber();
+            row[5] = list.get(i).getEmail();
+            row[6] = list.get(i).getPackageType();
+            row[7] = list.get(i).isSwimming();
+            row[8] = list.get(i).isGym();
+            row[9] = list.get(i).isDiving();
+            row[10] = list.get(i).isBoatRide();
+           model.addRow(row);
+           
+            
+            
+        }
+    }
  
     
     
@@ -79,7 +125,7 @@ public class GuestDetails extends javax.swing.JFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        guestTable = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
         comboType = new javax.swing.JComboBox<>();
         jLabel8 = new javax.swing.JLabel();
@@ -118,7 +164,7 @@ public class GuestDetails extends javax.swing.JFrame {
         setTitle("Guest Details");
         setUndecorated(true);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        guestTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -126,7 +172,7 @@ public class GuestDetails extends javax.swing.JFrame {
                 "Guest Id", "Name", "Type", "Nic", "Phone Number", "Email", "Package Type", "Swim", "Gym", "Diving", "Boat Ride"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(guestTable);
 
         jPanel1.setBackground(new java.awt.Color(51, 51, 51));
 
@@ -834,6 +880,7 @@ public class GuestDetails extends javax.swing.JFrame {
     private javax.swing.JLabel close;
     private javax.swing.JComboBox<String> comboPackage;
     private javax.swing.JComboBox<String> comboType;
+    private javax.swing.JTable guestTable;
     private javax.swing.JPanel header;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -851,7 +898,6 @@ public class GuestDetails extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator4;
     private javax.swing.JSeparator jSeparator5;
     private javax.swing.JSeparator jSeparator6;
-    private javax.swing.JTable jTable1;
     private javax.swing.JLabel minimize;
     private com.k33ptoo.components.KButton txtDeleteButton;
     private javax.swing.JTextField txtEmail;

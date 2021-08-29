@@ -15,7 +15,7 @@ class Guest {
     private int phoneNumber;
     private boolean swimming,gym,diving,boatRide;
 
-    public Guest(String guestId, String name, String type, String nic, String email, String packageType, int phoneNumber, boolean swimming, boolean gym, boolean diving, boolean boatRide) {
+    public Guest(String guestId, String name, String type, String nic,int phoneNumber, String email, String packageType, boolean swimming, boolean gym, boolean diving, boolean boatRide) {
         this.guestId = guestId;
         this.name = name;
         this.type = type;
