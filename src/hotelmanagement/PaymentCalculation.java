@@ -11,9 +11,12 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -30,11 +33,13 @@ public class PaymentCalculation extends javax.swing.JFrame {
         LoadProductNo();
         Color col = new Color(255, 255, 200);
         getContentPane().setBackground(col);
+        showPaymentCal();
     }
     
     Connection con;
     PreparedStatement pst;
     ResultSet rs;
+    Statement st;
 
     public void Connect() {
         try {
@@ -63,6 +68,56 @@ public class PaymentCalculation extends javax.swing.JFrame {
             Logger.getLogger(PaymentCalculation.class.getName()).log(Level.SEVERE, null, ex);
         }
         
+    }
+      
+      
+      public ArrayList <PaymentCal> paymentCalList(){
+        ArrayList <PaymentCal> paymentsCalList = new ArrayList<>();
+        try {
+            
+            String query1 = "SELECT * FROM paymentcalculation";
+            st = con.createStatement();
+            rs = st.executeQuery(query1);
+            PaymentCal paymentCal;
+            while(rs.next()){
+                paymentCal = new PaymentCal (
+                        
+                        rs.getString("payCalId"),
+                        rs.getString("guestId"),
+                        rs.getString("roomId"),
+                        rs.getInt("facilityCharges"),
+                        rs.getInt("serviceCharges"),
+                        rs.getInt("totalBill")
+                        
+                      
+                        
+                );
+                paymentsCalList.add(paymentCal);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(PaymentMethod.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return paymentsCalList;
+        
+    }
+    
+    public void showPaymentCal() {
+        ArrayList <PaymentCal> list = paymentCalList();
+        DefaultTableModel model = ( DefaultTableModel)tablePaymentCal.getModel();
+        Object [] row = new Object[6];
+        for (int i = 0; i < list.size(); i++){
+            row[0] = list.get(i).getPayCalId();
+            row[1] = list.get(i).getGuestId();
+            row[2] = list.get(i).getRoomId();
+            row[3] = list.get(i).getFacilityCharges();
+            row[4] = list.get(i).getServiceCharges();
+            row[5] = list.get(i).getTotalBill();
+            
+           model.addRow(row);
+           
+            
+            
+        }
     }
 
 
@@ -102,6 +157,8 @@ public class PaymentCalculation extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         minimize = new javax.swing.JLabel();
         close = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tablePaymentCal = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Payment Calculation");
@@ -390,6 +447,16 @@ public class PaymentCalculation extends javax.swing.JFrame {
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
+        tablePaymentCal.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Pay Cal Id", "Guest Id", "Room Id", "Facility Charges", "Service Charges", "Total Bill"
+            }
+        ));
+        jScrollPane1.setViewportView(tablePaymentCal);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -397,9 +464,14 @@ public class PaymentCalculation extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel2)
-                .addContainerGap(688, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel2))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(37, 37, 37)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 544, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(112, Short.MAX_VALUE))
             .addComponent(header, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
@@ -408,9 +480,11 @@ public class PaymentCalculation extends javax.swing.JFrame {
                 .addComponent(header, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(849, 849, 849)
+                        .addGap(102, 102, 102)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(345, 345, 345)
                         .addComponent(jLabel2)
-                        .addContainerGap(102, Short.MAX_VALUE))
+                        .addContainerGap(73, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -632,11 +706,13 @@ public class PaymentCalculation extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
     private javax.swing.JSeparator jSeparator5;
     private javax.swing.JSeparator jSeparator6;
     private javax.swing.JLabel minimize;
+    private javax.swing.JTable tablePaymentCal;
     private com.k33ptoo.components.KButton txtDeleteButton;
     private javax.swing.JTextField txtFacilityChargers;
     private javax.swing.JTextField txtPayCalId;
