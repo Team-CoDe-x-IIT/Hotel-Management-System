@@ -31,9 +31,9 @@ public class RoomReservation extends javax.swing.JFrame {
      */
     public RoomReservation() {
         initComponents();
-//         Connect();
-//         LoadProductNo();
-//         showRoomReservation();
+         Connect();
+         LoadProductNo();
+         showRoomReservation();
          Color col = new Color(255, 255, 200);
         getContentPane().setBackground(col);
     }
@@ -360,7 +360,7 @@ public class RoomReservation extends javax.swing.JFrame {
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(jSeparator6)
                                 .addComponent(txtRoomId, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(18, 18, 18)
                         .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(3, 3, 3)
