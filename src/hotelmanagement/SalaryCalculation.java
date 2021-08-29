@@ -35,7 +35,7 @@ public class SalaryCalculation extends javax.swing.JFrame {
     }
     
     
-     Connection con;
+    Connection con;
     PreparedStatement pst;
     ResultSet rs;
     Statement st;
