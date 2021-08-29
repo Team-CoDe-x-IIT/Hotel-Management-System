@@ -108,6 +108,8 @@ public class HallReservation extends javax.swing.JFrame {
             }
         });
 
+        dateReservationDate.setFont(new java.awt.Font("Open Sans SemiBold", 0, 18)); // NOI18N
+
         jLabel5.setBackground(new java.awt.Color(204, 204, 204));
         jLabel5.setFont(new java.awt.Font("Open Sans SemiBold", 0, 18)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(204, 204, 204));
@@ -312,9 +314,11 @@ public class HallReservation extends javax.swing.JFrame {
         header.setBackground(new java.awt.Color(255, 234, 0));
 
         jLabel7.setFont(new java.awt.Font("Open Sans SemiBold", 1, 18)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(51, 51, 51));
         jLabel7.setText("Pahalage Hotel Management System");
 
         minimize.setFont(new java.awt.Font("Open Sans SemiBold", 0, 48)); // NOI18N
+        minimize.setForeground(new java.awt.Color(51, 51, 51));
         minimize.setText("-");
         minimize.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -323,6 +327,7 @@ public class HallReservation extends javax.swing.JFrame {
         });
 
         close.setFont(new java.awt.Font("Open Sans SemiBold", 0, 36)); // NOI18N
+        close.setForeground(new java.awt.Color(51, 51, 51));
         close.setText("x");
         close.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
