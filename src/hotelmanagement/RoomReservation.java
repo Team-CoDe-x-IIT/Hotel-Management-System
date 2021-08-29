@@ -11,10 +11,13 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -29,11 +32,13 @@ public class RoomReservation extends javax.swing.JFrame {
         initComponents();
          Connect();
          LoadProductNo();
+         showRoomReservation();
     }
     
     Connection con;
     PreparedStatement pst;
     ResultSet rs;
+    Statement st;
 
     public void Connect() {
         try {
@@ -59,6 +64,57 @@ public class RoomReservation extends javax.swing.JFrame {
             Logger.getLogger(RoomReservation.class.getName()).log(Level.SEVERE, null, ex);
         }
         
+    }
+      
+      
+      public ArrayList <Room> roomList(){
+        ArrayList <Room> roomsList = new ArrayList<>();
+        try {
+            
+            String query1 = "SELECT * FROM roomreservation";
+            st = con.createStatement();
+            rs = st.executeQuery(query1);
+            Room room;
+            while(rs.next()){
+                room = new Room (
+                        
+                        rs.getString("roomId"),
+                        rs.getString("guestId"),
+                        rs.getString("roomType"),
+                        rs.getString("checkIn"),
+                        rs.getString("checkOut"),
+                        rs.getInt("noOfAdult"),
+                        rs.getInt("noOfChildren")
+                        
+                      
+                        
+                );
+                roomsList.add(room);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(PaymentMethod.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return roomsList;
+        
+    }
+    
+    public void showRoomReservation() {
+        ArrayList <Room> list = roomList();
+        DefaultTableModel model = ( DefaultTableModel)tableRoomReservation.getModel();
+        Object [] row = new Object[7];
+        for (int i = 0; i < list.size(); i++){
+            row[0] = list.get(i).getRoomId();
+            row[1] = list.get(i).getGuestId();
+            row[2] = list.get(i).getRoomtype();
+            row[3] = list.get(i).getCheckIn();
+            row[4] = list.get(i).getCheckOut();
+            row[5] = list.get(i).getNoOfAdult();
+            row[6] = list.get(i).getNoOfChildren();
+           model.addRow(row);
+           
+            
+            
+        }
     }
 
     /**
@@ -101,6 +157,8 @@ public class RoomReservation extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         minimize = new javax.swing.JLabel();
         close = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tableRoomReservation = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Room Reservation");
@@ -394,7 +452,7 @@ public class RoomReservation extends javax.swing.JFrame {
             .addGroup(headerLayout.createSequentialGroup()
                 .addGap(26, 26, 26)
                 .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 450, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 865, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 916, Short.MAX_VALUE)
                 .addComponent(minimize)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(close)
@@ -413,6 +471,16 @@ public class RoomReservation extends javax.swing.JFrame {
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
+        tableRoomReservation.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Room Id", "Guest Id", "Room Type", "Check In", "Check Out", "No Of Adult", "No Of Children"
+            }
+        ));
+        jScrollPane1.setViewportView(tableRoomReservation);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -421,15 +489,23 @@ public class RoomReservation extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 582, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(header, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(150, 150, 150)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
         pack();
@@ -647,6 +723,7 @@ public class RoomReservation extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator10;
     private javax.swing.JSeparator jSeparator11;
     private javax.swing.JSeparator jSeparator12;
@@ -655,6 +732,7 @@ public class RoomReservation extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator8;
     private javax.swing.JSeparator jSeparator9;
     private javax.swing.JLabel minimize;
+    private javax.swing.JTable tableRoomReservation;
     private com.k33ptoo.components.KButton txtDelete1;
     private javax.swing.JTextField txtNoOfAdult;
     private javax.swing.JTextField txtNoOfChildren;

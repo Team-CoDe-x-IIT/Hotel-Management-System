@@ -10,10 +10,13 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -28,11 +31,13 @@ public class HallReservation extends javax.swing.JFrame {
         initComponents();
         Connect();
         LoadProductNo();
+        showHall();
     }
     
     Connection con;
     PreparedStatement pst;
     ResultSet rs;
+    Statement st;
     
      public void LoadProductNo(){
         
@@ -60,6 +65,54 @@ public class HallReservation extends javax.swing.JFrame {
             Logger.getLogger(HallReservation.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
+    public ArrayList <Hall> hallList(){
+        ArrayList <Hall> hallsList = new ArrayList<>();
+        try {
+            
+            String query1 = "SELECT * FROM hallreservation";
+            st = con.createStatement();
+            rs = st.executeQuery(query1);
+            Hall hall;
+            while(rs.next()){
+                hall = new Hall (
+                        
+                        rs.getString("hallId"),
+                        rs.getString("functionType"),
+                        rs.getString("noOfGuests"),
+                        rs.getString("reservationDate"),
+                        rs.getString("guestId")
+                        
+                      
+                        
+                );
+                hallsList.add(hall);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(PaymentMethod.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return hallsList;
+        
+    }
+    
+    public void showHall() {
+        ArrayList <Hall> list = hallList();
+        DefaultTableModel model = ( DefaultTableModel)tableHallReservation.getModel();
+        Object [] row = new Object[5];
+        for (int i = 0; i < list.size(); i++){
+            row[0] = list.get(i).getHallId();
+            row[1] = list.get(i).getGuestId();
+            row[2] = list.get(i).getFunctionType();
+            row[3] = list.get(i).getNoOfGuests();
+            row[4] = list.get(i).getReservationDate();
+            
+           model.addRow(row);
+           
+            
+            
+        }
+    }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -93,6 +146,8 @@ public class HallReservation extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         minimize = new javax.swing.JLabel();
         close = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tableHallReservation = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Hall Reservation");
@@ -362,6 +417,16 @@ public class HallReservation extends javax.swing.JFrame {
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
+        tableHallReservation.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Hall Id", "Guest Id", "Function Type", "No Of Guests", "Reservation Date"
+            }
+        ));
+        jScrollPane1.setViewportView(tableHallReservation);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -370,14 +435,18 @@ public class HallReservation extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(712, Short.MAX_VALUE))
+                .addGap(36, 36, 36)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 604, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(header, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(44, 44, 44)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -566,10 +635,12 @@ public class HallReservation extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator10;
     private javax.swing.JSeparator jSeparator6;
     private javax.swing.JSeparator jSeparator9;
     private javax.swing.JLabel minimize;
+    private javax.swing.JTable tableHallReservation;
     private com.k33ptoo.components.KButton txtDelete;
     private javax.swing.JTextField txtHallId;
     private javax.swing.JTextField txtNoOfGuest;

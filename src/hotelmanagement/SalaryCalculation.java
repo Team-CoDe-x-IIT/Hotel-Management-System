@@ -10,10 +10,13 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -28,12 +31,14 @@ public class SalaryCalculation extends javax.swing.JFrame {
         initComponents();
         Connect();
         LoadProductNo();
+        showSalary();
     }
     
     
      Connection con;
     PreparedStatement pst;
     ResultSet rs;
+    Statement st;
     
     
     
@@ -64,6 +69,53 @@ public class SalaryCalculation extends javax.swing.JFrame {
             Logger.getLogger(SalaryCalculation.class.getName()).log(Level.SEVERE, null, ex);
         }
         
+    }
+    
+     public ArrayList <Salary> salaryList(){
+        ArrayList <Salary> salriesList = new ArrayList<>();
+        try {
+            
+            String query1 = "SELECT * FROM salarycalculation";
+            st = con.createStatement();
+            rs = st.executeQuery(query1);
+            Salary salary;
+            while(rs.next()){
+                salary = new Salary (
+                        
+                        rs.getString("salaryId"),
+                        rs.getString("staffId"),
+                        rs.getInt("workingDays"),
+                        rs.getInt("basicSalary"),
+                        rs.getInt("otHours"),
+                        rs.getInt("netPay")
+                      
+                        
+                );
+                salriesList.add(salary);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(SalaryCalculation.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return salriesList;
+        
+    }
+    
+    public void showSalary() {
+        ArrayList <Salary> list = salaryList();
+        DefaultTableModel model = ( DefaultTableModel)tableSalaryCalculation.getModel();
+        Object [] row = new Object[6];
+        for (int i = 0; i < list.size(); i++){
+            row[0] = list.get(i).getSalaryId();
+            row[1] = list.get(i).getStaffId();
+            row[2] = list.get(i).getWorkingDays();
+            row[3] = list.get(i).getBasicSalary();
+            row[4] = list.get(i).getOtHours();
+            row[5] = list.get(i).getNetPay();
+           model.addRow(row);
+           
+            
+            
+        }
     }
 
     /**
