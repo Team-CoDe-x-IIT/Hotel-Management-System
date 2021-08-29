@@ -293,7 +293,6 @@ public class PaymentCalculation extends javax.swing.JFrame {
 
         comboRoomid.setBackground(new java.awt.Color(51, 51, 51));
         comboRoomid.setFont(new java.awt.Font("Open Sans SemiBold", 0, 18)); // NOI18N
-        comboRoomid.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jLabel5.setFont(new java.awt.Font("Open Sans SemiBold", 0, 18)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(204, 204, 204));
@@ -313,7 +312,6 @@ public class PaymentCalculation extends javax.swing.JFrame {
 
         comboGuestId.setBackground(new java.awt.Color(51, 51, 51));
         comboGuestId.setFont(new java.awt.Font("Open Sans SemiBold", 0, 18)); // NOI18N
-        comboGuestId.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         btnHome.setBackground(new java.awt.Color(51, 51, 51));
         btnHome.setForeground(new java.awt.Color(51, 51, 51));
@@ -705,11 +703,15 @@ public class PaymentCalculation extends javax.swing.JFrame {
     }//GEN-LAST:event_closeMouseClicked
 
     private void btnHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHomeActionPerformed
-        // TODO add your handling code here:
+        Home home = new Home();
+        home.setVisible(true);
+        setVisible(false);
     }//GEN-LAST:event_btnHomeActionPerformed
 
     private void btnHome1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHome1ActionPerformed
-        // TODO add your handling code here:
+       PaymentMethod paymentMethod = new PaymentMethod();
+       paymentMethod.setVisible(true);
+        setVisible(false);
     }//GEN-LAST:event_btnHome1ActionPerformed
 
     /**

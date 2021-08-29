@@ -710,11 +710,15 @@ public class SalaryCalculation extends javax.swing.JFrame {
     }//GEN-LAST:event_closeMouseClicked
 
     private void btnHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHomeActionPerformed
-        // TODO add your handling code here:
+        Home home = new Home();
+        home.setVisible(true);
+        setVisible(false);
     }//GEN-LAST:event_btnHomeActionPerformed
 
     private void btnHome1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHome1ActionPerformed
-        // TODO add your handling code here:
+        StaffRegistration staffRegistration = new StaffRegistration();
+        staffRegistration.setVisible(true);
+        setVisible(false);
     }//GEN-LAST:event_btnHome1ActionPerformed
 
     /**
