@@ -619,7 +619,7 @@ public class GuestDetails extends javax.swing.JFrame {
         
     }//GEN-LAST:event_txtDeleteButtonActionPerformed
 
-    private void txtUpdatedButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUpdatedButtonActionPerformed
+    private void txtUpdatedButtonActionPerformed(java.awt.event.ActionEvent evt) {                                                 
         
                                                  
         
@@ -630,7 +630,7 @@ public class GuestDetails extends javax.swing.JFrame {
             String nic  = txtNic.getText();
             int phoneNumber = Integer.parseInt(txtPhoneNo.getText());
             String email = txtEmail.getText();
-            String packageType = (String) comboPackage.getSelectedItem();
+//            String packageType = (String) comboPackage.getSelectedItem();
             boolean swim = checkSwim.isSelected();
             boolean gym = checkGym.isSelected();
             boolean diving = checkDiving.isSelected();
@@ -644,7 +644,7 @@ public class GuestDetails extends javax.swing.JFrame {
             pst.setString(3, nic);
             pst.setInt(4, phoneNumber);
             pst.setString(5, email);
-            pst.setString(6,packageType);
+//            pst.setString(6,packageType);
              pst.setBoolean(7, swim);
             pst.setBoolean(8, gym);
             pst.setBoolean(9, diving);
@@ -674,7 +674,7 @@ public class GuestDetails extends javax.swing.JFrame {
         }
         
         
-    }//GEN-LAST:event_txtUpdateActionPerformed
+    }                                         
 
     private void txtSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSaveActionPerformed
         
@@ -686,7 +686,7 @@ public class GuestDetails extends javax.swing.JFrame {
             String nic  = txtNic.getText();
             int phoneNumber = Integer.parseInt(txtPhoneNo.getText());
             String email = txtEmail.getText();
-            String packageType = comboPackage.getItemAt(comboPackage.getSelectedIndex());
+//            String packageType = comboPackage.getItemAt(comboPackage.getSelectedIndex());
             boolean swim = checkSwim.isSelected();
             boolean gym = checkGym.isSelected();
             boolean diving = checkDiving.isSelected();
@@ -700,7 +700,7 @@ public class GuestDetails extends javax.swing.JFrame {
             pst.setString(4, nic);
             pst.setInt(5, phoneNumber);
             pst.setString(6, email);
-            pst.setString(7, packageType);
+//            pst.setString(7, packageType);
              pst.setBoolean(8, swim);
             pst.setBoolean(9, gym);
             pst.setBoolean(10, diving);
@@ -751,7 +751,7 @@ public class GuestDetails extends javax.swing.JFrame {
                 txtNic.setText(rs.getString(4));
                 txtPhoneNo.setText(rs.getString(5));  
                 txtEmail.setText(rs.getString(6));
-                comboPackage.setSelectedItem(rs.getString(7));
+//                comboPackage.setSelectedItem(rs.getString(7));
                 checkSwim.setSelected(rs.getBoolean(8));
                 checkGym.setSelected(rs.getBoolean(9));
                 checkDiving.setSelected(rs.getBoolean(10));
