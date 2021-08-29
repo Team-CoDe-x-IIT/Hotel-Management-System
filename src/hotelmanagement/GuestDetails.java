@@ -84,7 +84,7 @@ public class GuestDetails extends javax.swing.JFrame {
         checkGym = new javax.swing.JCheckBox();
         checkBoatRide = new javax.swing.JCheckBox();
         checkDiving = new javax.swing.JCheckBox();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        comboPackage = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Guest Details");
@@ -166,7 +166,7 @@ public class GuestDetails extends javax.swing.JFrame {
 
         checkDiving.setText("Diving");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Standard", "Gold", "Platinum" }));
+        comboPackage.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Standard", "Gold", "Platinum" }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -207,7 +207,7 @@ public class GuestDetails extends javax.swing.JFrame {
                                         .addComponent(txtEmail, javax.swing.GroupLayout.Alignment.LEADING)))
                                 .addGap(18, 18, 18)
                                 .addComponent(txtSearch))
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(comboPackage, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 269, Short.MAX_VALUE)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 549, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(64, 64, 64))
@@ -253,7 +253,7 @@ public class GuestDetails extends javax.swing.JFrame {
                         .addGap(37, 37, 37)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel8)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(comboPackage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(110, 110, 110)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 359, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -294,7 +294,7 @@ public class GuestDetails extends javax.swing.JFrame {
                 txtNic.setText("");
                 txtPhoneNo.setText("");
                 comboType.setSelectedItem(0);
-                
+                txtGuestId.setText("");
                 txtName.requestFocus();
                
                 
@@ -321,16 +321,26 @@ public class GuestDetails extends javax.swing.JFrame {
             String nic  = txtNic.getText();
             int phoneNumber = Integer.parseInt(txtPhoneNo.getText());
             String email = txtEmail.getText();
+            String packageType = (String) comboPackage.getSelectedItem();
+            boolean swim = checkSwim.isSelected();
+            boolean gym = checkGym.isSelected();
+            boolean diving = checkDiving.isSelected();
+            boolean boatride = checkBoatRide.isSelected();
  
             
-            pst = con.prepareStatement("update guestdetails set name = ?, type = ?, nic = ?, phoneNumber = ?,email=? where guestId = ? ");
+            pst = con.prepareStatement("update guestdetails set name = ?, type = ?, nic = ?, phoneNumber = ?, email = ?, packageType = ?,swimming = ?, gym = ?, diving = ?,boatRide = ?  where guestId = ? ");
             
             pst.setString(1, name);
             pst.setString(2, type);
             pst.setString(3, nic);
             pst.setInt(4, phoneNumber);
             pst.setString(5, email);
-            pst.setString(6, gId);
+            pst.setString(6,packageType);
+             pst.setBoolean(7, swim);
+            pst.setBoolean(8, gym);
+            pst.setBoolean(9, diving);
+            pst.setBoolean(10, boatride);
+            pst.setString(11, gId);
             
             
             int k = pst.executeUpdate();
@@ -346,7 +356,7 @@ public class GuestDetails extends javax.swing.JFrame {
                 
             }
             else{
-                JOptionPane.showMessageDialog(this, "Record Added failed");
+                JOptionPane.showMessageDialog(this, "Record Updated failed");
             }
         
         
@@ -367,15 +377,25 @@ public class GuestDetails extends javax.swing.JFrame {
             String nic  = txtNic.getText();
             int phoneNumber = Integer.parseInt(txtPhoneNo.getText());
             String email = txtEmail.getText();
+            String packageType = comboPackage.getItemAt(comboPackage.getSelectedIndex());
+            boolean swim = checkSwim.isSelected();
+            boolean gym = checkGym.isSelected();
+            boolean diving = checkDiving.isSelected();
+            boolean boatride = checkBoatRide.isSelected();
  
             
-            pst = con.prepareStatement("insert into guestdetails (guestId, name, type, nic, phoneNumber,email) values (?,?,?,?,?,?) ");
+            pst = con.prepareStatement("insert into guestdetails (guestId, name, type, nic, phoneNumber,email,packageType,swimming, gym, diving,boatRide) values (?,?,?,?,?,?,?,?,?,?,?) ");
             pst.setString(1, gId);
             pst.setString(2, name);
             pst.setString(3, type);
             pst.setString(4, nic);
             pst.setInt(5, phoneNumber);
             pst.setString(6, email);
+            pst.setString(7, packageType);
+             pst.setBoolean(8, swim);
+            pst.setBoolean(9, gym);
+            pst.setBoolean(10, diving);
+            pst.setBoolean(11, boatride);
             
             
             int k = pst.executeUpdate();
@@ -387,6 +407,10 @@ public class GuestDetails extends javax.swing.JFrame {
                 txtNic.setText("");
                 txtPhoneNo.setText("");
                 txtEmail.setText("");
+                 checkSwim.setText("");
+                checkGym.setText("");
+                checkDiving.setText("");
+                checkBoatRide.setText("");
                 txtGuestId.requestFocus();
                 
             }
@@ -413,10 +437,16 @@ public class GuestDetails extends javax.swing.JFrame {
             if (rs.next() == true){
                 txtGuestId.setText(rs.getString(1));
                 txtName.setText(rs.getString(2));
-                txtNic.setText(rs.getString(3));
-                txtPhoneNo.setText(rs.getString(4));  
-                txtEmail.setText(rs.getString(5));
-               comboType.setSelectedItem(rs.getString(3));
+                comboType.setSelectedItem(rs.getString(3));
+                txtNic.setText(rs.getString(4));
+                txtPhoneNo.setText(rs.getString(5));  
+                txtEmail.setText(rs.getString(6));
+                comboPackage.setSelectedItem(rs.getString(7));
+                checkSwim.setSelected(rs.getBoolean(8));
+                checkGym.setSelected(rs.getBoolean(9));
+                checkDiving.setSelected(rs.getBoolean(10));
+                checkBoatRide.setSelected(rs.getBoolean(11));
+               
                
             }
         } catch (SQLException ex) {
@@ -468,8 +498,8 @@ public class GuestDetails extends javax.swing.JFrame {
     private javax.swing.JCheckBox checkDiving;
     private javax.swing.JCheckBox checkGym;
     private javax.swing.JCheckBox checkSwim;
+    private javax.swing.JComboBox<String> comboPackage;
     private javax.swing.JComboBox<String> comboType;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

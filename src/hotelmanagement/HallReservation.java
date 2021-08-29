@@ -38,7 +38,7 @@ public class HallReservation extends javax.swing.JFrame {
         
         
         try {
-            pst = con.prepareStatement("select guestId from hallreservation where ");
+            pst = con.prepareStatement("select guestId from guestDetails");
             rs = pst.executeQuery();
             comboGuestId.removeAllItems();
             while(rs.next()){
@@ -97,6 +97,11 @@ public class HallReservation extends javax.swing.JFrame {
         jLabel4.setText("Function Type");
 
         comobHalltype.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Birthday", "Wedding Ceromony", "Pre or Post Wedding Ceromony", "Anniversary", "Bachelorette Party", "Farewells or Welcome Ceromony", "Baby Shower", "Corporate events like Seminar, Workshop, Lectures", "Festive Event" }));
+        comobHalltype.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comobHalltypeActionPerformed(evt);
+            }
+        });
 
         jLabel5.setText("No Of Guests");
 
@@ -110,6 +115,11 @@ public class HallReservation extends javax.swing.JFrame {
         });
 
         txtUpdate.setText("Update");
+        txtUpdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtUpdateActionPerformed(evt);
+            }
+        });
 
         txtDelete.setText("Delete");
         txtDelete.addActionListener(new java.awt.event.ActionListener() {
@@ -144,22 +154,30 @@ public class HallReservation extends javax.swing.JFrame {
                                 .addGap(95, 95, 95)
                                 .addComponent(txtDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addGap(84, 84, 84)
+                                .addComponent(comboGuestId, javax.swing.GroupLayout.PREFERRED_SIZE, 321, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jLabel4)
-                                    .addComponent(jLabel6)
-                                    .addComponent(jLabel2))
-                                .addGap(34, 34, 34)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jLabel1)
-                                    .addComponent(txtHallId)
-                                    .addComponent(comobHalltype, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(txtNoOfGuest, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(comboGuestId, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(dateReservationDate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                        .addGap(43, 43, 43)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel4)
+                                            .addComponent(jLabel6))
+                                        .addGap(34, 34, 34))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel3)
+                                        .addGap(95, 95, 95)))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtHallId, javax.swing.GroupLayout.PREFERRED_SIZE, 321, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(jLabel1)
+                                            .addComponent(txtNoOfGuest, javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(dateReservationDate, javax.swing.GroupLayout.DEFAULT_SIZE, 321, Short.MAX_VALUE))
+                                        .addComponent(comobHalltype, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addGap(67, 67, 67)
                         .addComponent(btnSearch)))
-                .addContainerGap(845, Short.MAX_VALUE))
+                .addContainerGap(821, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -168,14 +186,14 @@ public class HallReservation extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addGap(11, 11, 11)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(comboGuestId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnSearch))
-                .addGap(20, 20, 20)
+                    .addComponent(btnSearch)
+                    .addComponent(txtHallId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3))
+                .addGap(24, 24, 24)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(txtHallId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(38, 38, 38)
+                    .addComponent(jLabel2)
+                    .addComponent(comboGuestId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(31, 31, 31)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(comobHalltype, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -187,7 +205,7 @@ public class HallReservation extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel6)
                     .addComponent(dateReservationDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 118, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 121, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtSave, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -212,15 +230,16 @@ public class HallReservation extends javax.swing.JFrame {
             String hId = txtHallId.getText();
             String functionType = comobHalltype.getItemAt(comobHalltype.getSelectedIndex());
             int noOfGuest = Integer.parseInt(txtNoOfGuest.getText());;
-            
+            String gid = comboGuestId.getItemAt(comboGuestId.getSelectedIndex());
            
             
-            pst = con.prepareStatement("insert into hallreservation (hallId, functionType, noOfGuests, reservationDate) values (?,?,?,?) ");
+            pst = con.prepareStatement("insert into hallreservation (hallId,functionType, noOfGuests, reservationDate,guestId) values (?,?,?,?,?) ");
             pst.setString(1, hId);
+           
             pst.setString(2, functionType);
             pst.setInt(3, noOfGuest);
             pst.setString(4, dateReserString);
-            
+             pst.setString(5, gid);
  
             
             int k = pst.executeUpdate();
@@ -253,15 +272,66 @@ public class HallReservation extends javax.swing.JFrame {
             
             if (rs.next() == true){
                 txtHallId.setText(rs.getString(1));
-                txtNoOfGuest.setText(rs.getString(2));
-//                comboGender.set(rs.getString(3));
-//                txtReservationDate.setText(rs.getString(4));
+                comobHalltype.setSelectedItem(rs.getString(2));
+                txtNoOfGuest.setText(rs.getString(3));
+               
+               dateReservationDate.setDate(rs.getDate(4));
                 
             }
         } catch (SQLException ex) {
-            Logger.getLogger(StaffRegistration.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(HallReservation.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnSearchActionPerformed
+
+    private void comobHalltypeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comobHalltypeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_comobHalltypeActionPerformed
+
+    private void txtUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUpdateActionPerformed
+        
+        
+         try {
+             
+             
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            String dateReserString = dateFormat.format(dateReservationDate.getDate());
+            String gid = (String) comboGuestId.getSelectedItem();
+            String hId = txtHallId.getText();
+            String functionType = (String) comobHalltype.getSelectedItem();
+            int noOfGuest = Integer.parseInt(txtNoOfGuest.getText());;
+            
+           
+            
+            pst = con.prepareStatement("update hallreservation set functionType = ? , noOfGuests = ? , reservationDate = ? ,guestId = ? where hallId = ? ");
+       
+           
+            pst.setString(1, functionType);
+            pst.setInt(2, noOfGuest);
+            pst.setString(3, dateReserString);
+             pst.setString(4, gid);
+             pst.setString(5, hId);
+ 
+            
+            int k = pst.executeUpdate();
+            
+            if (k == 1) {
+                JOptionPane.showMessageDialog(this, "Record Updated");
+                txtHallId.setText("");
+                txtNoOfGuest.setText("");
+                
+                
+                
+            }
+            else{
+                JOptionPane.showMessageDialog(this, "Record Updated failed");
+            }
+        
+        
+        } catch (SQLException ex) {
+            Logger.getLogger(HallReservation.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }//GEN-LAST:event_txtUpdateActionPerformed
 
     /**
      * @param args the command line arguments

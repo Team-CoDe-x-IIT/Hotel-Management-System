@@ -28,6 +28,7 @@ public class RoomReservation extends javax.swing.JFrame {
     public RoomReservation() {
         initComponents();
          Connect();
+         LoadProductNo();
     }
     
     Connection con;
@@ -43,6 +44,21 @@ public class RoomReservation extends javax.swing.JFrame {
         } catch (SQLException ex) {
             Logger.getLogger(RoomReservation.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+      public void LoadProductNo(){
+        
+        
+        try {
+            pst = con.prepareStatement("select guestId from guestdetails");
+            rs = pst.executeQuery();
+            comboGuestId.removeAllItems();
+            while(rs.next()){
+                comboGuestId.addItem(rs.getString(1));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(RoomReservation.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }
 
     /**
@@ -72,7 +88,7 @@ public class RoomReservation extends javax.swing.JFrame {
         dateCheckIn = new com.toedter.calendar.JDateChooser();
         dateCheckOut = new com.toedter.calendar.JDateChooser();
         jLabel2 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        comboGuestId = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Room Reservation");
@@ -94,11 +110,21 @@ public class RoomReservation extends javax.swing.JFrame {
 
         txtUpdate.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtUpdate.setText("Update");
+        txtUpdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtUpdateActionPerformed(evt);
+            }
+        });
 
         comboRoomType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Single", "Double", "Triple", "Quad", "Queen", "King", "Twin" }));
 
         txtDelete.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtDelete.setText("Delete");
+        txtDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtDeleteActionPerformed(evt);
+            }
+        });
 
         txtSave.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtSave.setText("Save");
@@ -117,7 +143,7 @@ public class RoomReservation extends javax.swing.JFrame {
 
         jLabel2.setText("Guest Id");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        comboGuestId.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " " }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -126,29 +152,31 @@ public class RoomReservation extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(45, 45, 45)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3)
                     .addComponent(jLabel4)
                     .addComponent(jLabel5)
                     .addComponent(jLabel6)
                     .addComponent(jLabel7)
                     .addComponent(jLabel8)
                     .addComponent(txtSave, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(jLabel2)
+                        .addComponent(jLabel3)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(27, 27, 27)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(jComboBox1, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(dateCheckOut, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(dateCheckIn, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(txtNoOfChildren, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtNoOfAdult, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(comboRoomType, javax.swing.GroupLayout.Alignment.LEADING, 0, 121, Short.MAX_VALUE)
-                                    .addComponent(txtRoomId, javax.swing.GroupLayout.Alignment.LEADING))
-                                .addGap(63, 63, 63)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(dateCheckOut, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(dateCheckIn, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(txtNoOfChildren, javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(txtNoOfAdult, javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(comboRoomType, javax.swing.GroupLayout.Alignment.LEADING, 0, 121, Short.MAX_VALUE)
+                                        .addComponent(txtRoomId, javax.swing.GroupLayout.Alignment.LEADING))
+                                    .addComponent(comboGuestId, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
                                 .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(130, 130, 130)
@@ -164,13 +192,13 @@ public class RoomReservation extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addGap(19, 19, 19)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtRoomId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3)
                     .addComponent(txtSearch))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(txtRoomId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel2)
+                    .addComponent(comboGuestId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
@@ -210,18 +238,20 @@ public class RoomReservation extends javax.swing.JFrame {
             String dateCheckOutString = dateFormat.format(dateCheckOut.getDate());
             
             String rId = txtRoomId.getText();
+            String gid = comboGuestId.getItemAt(comboGuestId.getSelectedIndex());
             String roomType = comboRoomType.getItemAt(comboRoomType.getSelectedIndex());
             int noOfAdult = Integer.parseInt(txtNoOfAdult.getText());
             int noOfChildren = Integer.parseInt(txtNoOfChildren.getText());
            
             
-            pst = con.prepareStatement("insert into roomreservation (roomId, roomType, checkIn, checkOut, noOfAdult,noOfChildren) values (?,?,?,?,?,?) ");
+            pst = con.prepareStatement("insert into roomreservation (roomId,guestId, roomType, checkIn, checkOut, noOfAdult,noOfChildren) values (?,?,?,?,?,?,?) ");
             pst.setString(1, rId);
-            pst.setString(2, roomType);
-            pst.setString(3, dateCheckInString);
-            pst.setString(4, dateCheckOutString);
-            pst.setInt(5, noOfAdult);
-            pst.setInt(6, noOfChildren);
+            pst.setString(2, gid);
+            pst.setString(3, roomType);
+            pst.setString(4, dateCheckInString);
+            pst.setString(5, dateCheckOutString);
+            pst.setInt(6, noOfAdult);
+            pst.setInt(7, noOfChildren);
             
             
             int k = pst.executeUpdate();
@@ -255,16 +285,101 @@ public class RoomReservation extends javax.swing.JFrame {
             
             if (rs.next() == true){
                 txtRoomId.setText(rs.getString(1));
-//                dateCheckIn.setText(rs.getString(2));
-//                comboRoomType.(rs.getString(3));
-//                dateCheckOut.setText(rs.getString(4));
-                txtNoOfAdult.setText(rs.getString(5));
-                txtNoOfChildren.setText(rs.getString(6));
+                comboGuestId.setSelectedItem(rs.getString(2));
+                 comboRoomType.setSelectedItem(rs.getString(3));
+                dateCheckIn.setDate(rs.getDate(4));
+               
+                dateCheckOut.setDate(rs.getDate(5));
+                txtNoOfAdult.setText(rs.getString(6));
+                txtNoOfChildren.setText(rs.getString(7));
             }
+        } catch (SQLException ex) {
+            Logger.getLogger(RoomReservation.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_txtSearchActionPerformed
+
+    private void txtUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUpdateActionPerformed
+            
+        
+          try {
+            
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            String dateCheckInString = dateFormat.format(dateCheckIn.getDate());
+            String dateCheckOutString = dateFormat.format(dateCheckOut.getDate());
+            
+            String rId = txtRoomId.getText();
+            String gid = (String) comboGuestId.getSelectedItem();
+            String roomType = (String) comboRoomType.getSelectedItem();
+            int noOfAdult = Integer.parseInt(txtNoOfAdult.getText());
+            int noOfChildren = Integer.parseInt(txtNoOfChildren.getText());
+            
+            
+            pst = con.prepareStatement("update roomreservation set guestId = ? , roomType = ? , checkIn = ?, checkOut = ?, noOfAdult = ? ,noOfChildren = ? where roomId = ? ");
+           
+            pst.setString(1, gid);
+            pst.setString(2, roomType);
+            pst.setString(3, dateCheckInString);
+            pst.setString(4, dateCheckOutString);
+            pst.setInt(5, noOfAdult);
+            pst.setInt(6, noOfChildren);
+             pst.setString(7, rId);
+            
+            
+            int k = pst.executeUpdate();
+            
+            if (k == 1) {
+                JOptionPane.showMessageDialog(this, "Record Updated");
+                txtRoomId.setText("");
+               
+                txtNoOfAdult.setText("");
+                txtNoOfChildren.setText("");
+                txtRoomId.requestFocus();
+                
+            }
+            else{
+                JOptionPane.showMessageDialog(this, "Record Updated failed");
+            }
+        
+        
+        } catch (SQLException ex) {
+            Logger.getLogger(RoomReservation.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
+        
+    }//GEN-LAST:event_txtUpdateActionPerformed
+
+    private void txtDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDeleteActionPerformed
+        
+        
+         try {
+           
+            String rid = txtRoomId.getText();
+            
+            pst = con.prepareStatement("delete from roomreservation where roomId = ?");
+
+            pst.setString(1, rid);
+            int k = pst.executeUpdate();
+            
+            if (k == 1) {
+                JOptionPane.showMessageDialog(this, "Record Deleted");
+               comboRoomType.setSelectedItem(0);
+               dateCheckIn.setDateFormatString("");
+               dateCheckOut.setDateFormatString("");
+               txtRoomId.setText("");
+                
+                
+            }
+            else{
+                JOptionPane.showMessageDialog(this, "Record deleted  failed");
+            }
+        
+        
         } catch (SQLException ex) {
             Logger.getLogger(StaffRegistration.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_txtSearchActionPerformed
+        
+    }//GEN-LAST:event_txtDeleteActionPerformed
 
     /**
      * @param args the command line arguments
@@ -302,10 +417,10 @@ public class RoomReservation extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> comboGuestId;
     private javax.swing.JComboBox<String> comboRoomType;
     private com.toedter.calendar.JDateChooser dateCheckIn;
     private com.toedter.calendar.JDateChooser dateCheckOut;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
