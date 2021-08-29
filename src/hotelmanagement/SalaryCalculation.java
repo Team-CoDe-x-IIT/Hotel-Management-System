@@ -30,9 +30,9 @@ public class SalaryCalculation extends javax.swing.JFrame {
      */
     public SalaryCalculation() {
         initComponents();
-//        Connect();
-//        LoadProductNo();
-//        showSalary();
+        Connect();
+        LoadProductNo();
+        showSalary();
         Color col = new Color(255, 255, 200);
         getContentPane().setBackground(col);
     }

@@ -28,8 +28,8 @@ public class StaffRegistration extends javax.swing.JFrame {
      */
     public StaffRegistration() {
         initComponents();
-//        Connect();
-//        showStaff();
+        Connect();
+        showStaff();
        
 
     }
