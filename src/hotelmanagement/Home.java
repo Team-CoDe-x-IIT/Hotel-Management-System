@@ -216,12 +216,12 @@ public class Home extends javax.swing.JFrame {
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(kButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(kButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(342, 342, 342)
+                                .addGap(399, 399, 399)
                                 .addComponent(kButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(275, 275, 275)
                                 .addComponent(logo, javax.swing.GroupLayout.PREFERRED_SIZE, 386, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(252, Short.MAX_VALUE))
+                .addContainerGap(330, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -250,19 +250,29 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_closeMouseClicked
 
     private void kButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kButton1ActionPerformed
-        // TODO add your handling code here:
+        
+        GuestDetails guestDetails = new GuestDetails();
+        guestDetails.setVisible(true);
+        setVisible(false);
+        
     }//GEN-LAST:event_kButton1ActionPerformed
 
     private void kButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kButton2ActionPerformed
-        // TODO add your handling code here:
+     RoomReservation roomReservation = new RoomReservation();
+     roomReservation.setVisible(true);
+        setVisible(false);
     }//GEN-LAST:event_kButton2ActionPerformed
 
     private void kButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kButton3ActionPerformed
-        // TODO add your handling code here:
+       PaymentMethod paymentMethod = new PaymentMethod();
+       paymentMethod.setVisible(true);
+        setVisible(false);
     }//GEN-LAST:event_kButton3ActionPerformed
 
     private void kButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kButton4ActionPerformed
-        // TODO add your handling code here:
+      StaffRegistration staffRegistration = new StaffRegistration();
+      staffRegistration.setVisible(true);
+        setVisible(false);
     }//GEN-LAST:event_kButton4ActionPerformed
 
     /**

@@ -288,6 +288,9 @@ public class Login extends javax.swing.JFrame {
             rs = pst.executeQuery();
             if (rs.next()){
                 JOptionPane.showMessageDialog(null, "UserName and Password Matched");
+                Home home = new Home();
+                home.setVisible(true);
+                setVisible(false);
             }else{
                 JOptionPane.showMessageDialog(null, "UserName and Password Dont Matched");
                 txtPassword.setText("");
