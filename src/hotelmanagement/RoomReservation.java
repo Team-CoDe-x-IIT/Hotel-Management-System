@@ -5,6 +5,7 @@
  */
 package hotelmanagement;
 
+import java.awt.Color;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.DriverManager;
@@ -33,6 +34,8 @@ public class RoomReservation extends javax.swing.JFrame {
          Connect();
          LoadProductNo();
          showRoomReservation();
+         Color col = new Color(255, 255, 200);
+        getContentPane().setBackground(col);
     }
     
     Connection con;
@@ -452,7 +455,7 @@ public class RoomReservation extends javax.swing.JFrame {
             .addGroup(headerLayout.createSequentialGroup()
                 .addGap(26, 26, 26)
                 .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 450, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 916, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 1206, Short.MAX_VALUE)
                 .addComponent(minimize)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(close)
@@ -499,7 +502,7 @@ public class RoomReservation extends javax.swing.JFrame {
                 .addComponent(header, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap())
                     .addGroup(layout.createSequentialGroup()

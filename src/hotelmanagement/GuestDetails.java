@@ -31,10 +31,10 @@ public class GuestDetails extends javax.swing.JFrame {
      */
     public GuestDetails() {
         initComponents();
-        Connect() ;
+//        Connect() ;
         Color col = new Color(255, 255, 200);
         getContentPane().setBackground(col);
-        showUser();
+//        showUser();
  }
 
     
@@ -224,6 +224,7 @@ public class GuestDetails extends javax.swing.JFrame {
         txtUpdatedButton.setForeground(new java.awt.Color(51, 51, 51));
         txtUpdatedButton.setText("Update");
         txtUpdatedButton.setFont(new java.awt.Font("Open Sans SemiBold", 0, 18)); // NOI18N
+        txtUpdatedButton.setkAllowGradient(false);
         txtUpdatedButton.setkBackGroundColor(new java.awt.Color(255, 234, 0));
         txtUpdatedButton.setkBorderRadius(40);
         txtUpdatedButton.setkEndColor(new java.awt.Color(255, 234, 0));
@@ -545,7 +546,7 @@ public class GuestDetails extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 78, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 619, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addComponent(header, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
