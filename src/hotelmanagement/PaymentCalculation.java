@@ -434,12 +434,14 @@ public class PaymentCalculation extends javax.swing.JFrame {
             String rid = comboRoomid.getItemAt(comboRoomid.getSelectedIndex());
             String gid = comboGuestId.getItemAt(comboGuestId.getSelectedIndex());
             
-            pst = con.prepareStatement("insert into paymentcalculation (payCalId, facilityCharges,serviceCharges, vat, totalBill) values (?,?,?,?,?) ");
-//            pst.setString(1, pcId);
-            pst.setInt(2, facilityCharges);
-            pst.setInt(3, serviceCharges);
-//            pst.setInt(4, vat);
-            pst.setInt(5, totalBill);
+            pst = con.prepareStatement("insert into paymentcalculation (payCalId,guestId, roomId, facilityCharges,serviceCharges,totalBill) values (?,?,?,?,?,?) ");
+            pst.setString(1, pcId);
+            pst.setString(2, gid);
+            pst.setString(3, rid);
+            pst.setInt(4, facilityCharges);
+            pst.setInt(5, serviceCharges);
+            pst.setInt(6, totalBill);
+           
             
             
             
@@ -447,12 +449,12 @@ public class PaymentCalculation extends javax.swing.JFrame {
             
             if (k == 1) {
                 JOptionPane.showMessageDialog(this, "Record Added");
-//                txtPayCalc.setText("");
+               txtPayCalId.setText("");
                 txtFacilityChargers.setText("");
                 txtServiceChargers.setText("");
-//                txtVat.setText("");
+               
                 txtTotalBill.setText("");
-//                txtPayCalc.requestFocus();
+                txtPayCalId.requestFocus();
                 
             }
             else{
@@ -468,33 +470,103 @@ public class PaymentCalculation extends javax.swing.JFrame {
 
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
 
-        //       String pcId = txtPayCalc.getText();
+               String pcId = txtPayCalId.getText();
 
         try {
             pst = con.prepareStatement("select * from paymentcalculation where payCalId = ? ");
-//            pst.setString(1, pcId);
+        pst.setString(1, pcId);
             rs = pst.executeQuery();
             
             if (rs.next() == true){
-//                txtPayCalc.setText(rs.getString(1));
-                txtFacilityChargers.setText(rs.getString(2));
-                txtServiceChargers.setText(rs.getString(3));
-//                txtVat.setText(rs.getString(4));
-                txtTotalBill.setText(rs.getString(5));
+                txtPayCalId.setText(rs.getString(1));
+                comboGuestId.setSelectedItem(rs.getString(2));
+                comboRoomid.setSelectedItem(rs.getString(3));
+                txtFacilityChargers.setText(rs.getString(4));
+                txtServiceChargers.setText(rs.getString(5));
+                txtTotalBill.setText(rs.getString(6));
                
             }
         } catch (SQLException ex) {
-            Logger.getLogger(StaffRegistration.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(PaymentCalculation.class.getName()).log(Level.SEVERE, null, ex);
         }
        
     }//GEN-LAST:event_btnSearchActionPerformed
 
     private void txtDeleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDeleteButtonActionPerformed
 
+        
+        try {
+           
+            String payCalId = txtPayCalId.getText();
+            
+            pst = con.prepareStatement("delete from paymentcalculation where payCalId = ?");
+
+            pst.setString(1, payCalId);
+            int k = pst.executeUpdate();
+            
+            if (k == 1) {
+               JOptionPane.showMessageDialog(this, "Record Deleted");
+               txtPayCalId.setText("");
+               txtFacilityChargers.setText("");
+               txtServiceChargers.setText("");
+               txtTotalBill.setText("");
+               
+                
+                
+            }
+            else{
+                JOptionPane.showMessageDialog(this, "Record deleted  failed");
+            }
+        
+        
+        } catch (SQLException ex) {
+            Logger.getLogger(StaffRegistration.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }//GEN-LAST:event_txtDeleteButtonActionPerformed
 
     private void txtUpdatedButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUpdatedButtonActionPerformed
-       
+
+         try {
+            String pcId = txtPayCalId.getText();
+            int facilityCharges = Integer.parseInt(txtFacilityChargers.getText());
+            int serviceCharges  = Integer.parseInt(txtServiceChargers.getText());
+            int totalBill = Integer.parseInt(txtTotalBill.getText());
+            String rid = (String) comboRoomid.getSelectedItem();
+            String gid = (String) comboGuestId.getSelectedItem();
+            
+            pst = con.prepareStatement("update paymentcalculation set guestId =? , roomId = ? , facilityCharges = ?,serviceCharges = ? ,totalBill = ? where payCalId = ? ");
+           
+            pst.setString(1, gid);
+            pst.setString(2, rid);
+            pst.setInt(3, facilityCharges);
+            pst.setInt(4, serviceCharges);
+            pst.setInt(5, totalBill);
+            pst.setString(6, pcId);
+            
+            
+            
+            int k = pst.executeUpdate();
+            
+            if (k == 1) {
+                JOptionPane.showMessageDialog(this, "Record Updated");
+               txtPayCalId.setText("");
+                txtFacilityChargers.setText("");
+                txtServiceChargers.setText("");
+               
+                txtTotalBill.setText("");
+                txtPayCalId.requestFocus();
+                
+            }
+            else{
+                JOptionPane.showMessageDialog(this, "Record Updated failed");
+            }
+        
+        
+        } catch (SQLException ex) {
+            Logger.getLogger(PaymentCalculation.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }//GEN-LAST:event_txtUpdatedButtonActionPerformed
 
     private void txtFacilityChargersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFacilityChargersActionPerformed
