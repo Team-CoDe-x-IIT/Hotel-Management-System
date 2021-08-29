@@ -17,6 +17,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -31,9 +32,10 @@ public class PaymentMethod extends javax.swing.JFrame {
      */
     public PaymentMethod() {
         initComponents();
-//        Connect();
-//        showPayment();
- Color col = new Color(255, 255, 200);
+        Connect();
+        showPayment();
+        
+        Color col = new Color(255, 255, 200);
         getContentPane().setBackground(col);
         
         
@@ -49,6 +51,10 @@ public class PaymentMethod extends javax.swing.JFrame {
         tablePayment.setSelectionBackground(new Color(255,255,200));
         tablePayment.setSelectionForeground(new Color(51,51,51));
         tablePayment.setOpaque(false);
+        
+        jScrollPane1.getViewport().setBackground(new Color(51,51,51));
+        
+        setExtendedState(JFrame.MAXIMIZED_BOTH);
     }
     
     
@@ -154,15 +160,7 @@ public class PaymentMethod extends javax.swing.JFrame {
 
         tablePayment.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, "acs", null, null},
-                {"ads", null, null, "sdasd"},
-                {null, "asacs", null, null},
-                {null, null, null, null},
-                {"ads", null, "asc", null},
-                {null, null, null, null},
-                {null, "asd", "asd", "ad"},
-                {null, null, null, null},
-                {null, "sad", null, null}
+
             },
             new String [] {
                 "Payment Id", "Reservation Type", "Payment Method", "Email"
@@ -481,10 +479,10 @@ public class PaymentMethod extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(header, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(60, 60, 60)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1))
                 .addContainerGap())
         );
 

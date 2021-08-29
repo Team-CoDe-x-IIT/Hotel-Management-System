@@ -17,6 +17,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -31,11 +32,12 @@ public class PaymentCalculation extends javax.swing.JFrame {
      */
     public PaymentCalculation() {
         initComponents();
-//        Connect();
-//        LoadProductNo();
+        Connect();
+        LoadProductNo();
+        showPaymentCal();
+
         Color col = new Color(255, 255, 200);
         getContentPane().setBackground(col);
-//        showPaymentCal();
 
         tablePaymentCal.getTableHeader().setFont(new Font("Open Sans SemiBold", Font.PLAIN, 18));
         tablePaymentCal.getTableHeader().setOpaque(false);
@@ -49,6 +51,10 @@ public class PaymentCalculation extends javax.swing.JFrame {
         tablePaymentCal.setSelectionBackground(new Color(255,255,200));
         tablePaymentCal.setSelectionForeground(new Color(51,51,51));
         tablePaymentCal.setOpaque(false);
+
+        jScrollPane1.getViewport().setBackground(new Color(51,51,51));
+        
+        setExtendedState(JFrame.MAXIMIZED_BOTH);
         
     }
     
@@ -516,23 +522,7 @@ public class PaymentCalculation extends javax.swing.JFrame {
         tablePaymentCal.setForeground(new java.awt.Color(204, 204, 204));
         tablePaymentCal.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {"ds", "sd", "sd", "sd", "dsv", "sdv"},
-                {"sdf", "fsv", "fsb", "sdv", "sdv", null},
-                {null, null, null, "acs", null, null},
-                {null, null, null, null, null, null},
-                {null, "asc", null, null, "asc", null},
-                {null, null, null, null, null, null},
-                {null, "acs", "dzcasc", null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, "sasca", null, null},
-                {null, "csa", null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, "acs", null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, "acs", null, null},
-                {null, null, "asc", null, null, "asc"},
-                {null, null, null, null, "ascasc", null},
-                {null, null, null, null, null, "asc"}
+
             },
             new String [] {
                 "Pay Cal Id", "Guest Id", "Room Id", "Facility Charges", "Service Charges", "Total Bill"
@@ -570,16 +560,13 @@ public class PaymentCalculation extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(header, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(368, 368, 368)
-                        .addComponent(jLabel2)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())))
+                .addGap(60, 60, 60)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane1)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel2)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
