@@ -13,6 +13,8 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -36,6 +38,7 @@ public class GuestDetails extends javax.swing.JFrame {
     
     Connection con;
     PreparedStatement pst;
+    Statement st;
     ResultSet rs;
 
     public void Connect() {
@@ -49,6 +52,18 @@ public class GuestDetails extends javax.swing.JFrame {
         }
     }
     
+    
+    public ArrayList <Guest> guestList(){
+        try {
+            ArrayList <Guest> guestList = new ArrayList<>();
+            String query1 = "SELECT * FROM guestdetails";
+            st = con.createStatement();
+            rs = st.executeQuery(query1);
+        } catch (SQLException ex) {
+            Logger.getLogger(GuestDetails.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }
  
     
     
@@ -87,7 +102,7 @@ public class GuestDetails extends javax.swing.JFrame {
         checkGym = new javax.swing.JCheckBox();
         checkBoatRide = new javax.swing.JCheckBox();
         checkDiving = new javax.swing.JCheckBox();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        comboPackage = new javax.swing.JComboBox<>();
         jSeparator1 = new javax.swing.JSeparator();
         jSeparator2 = new javax.swing.JSeparator();
         jSeparator4 = new javax.swing.JSeparator();
@@ -105,13 +120,10 @@ public class GuestDetails extends javax.swing.JFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Guest Id", "Name", "Type", "Nic", "Phone Number", "Email", "Package Type", "Swim", "Gym", "Diving", "Boat Ride"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
@@ -122,7 +134,6 @@ public class GuestDetails extends javax.swing.JFrame {
         comboType.setFont(new java.awt.Font("Open Sans SemiBold", 0, 18)); // NOI18N
         comboType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Local", "Foreign", " " }));
         comboType.setSelectedIndex(1);
-        comboType.setOpaque(true);
 
         jLabel8.setFont(new java.awt.Font("Open Sans SemiBold", 0, 18)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(204, 204, 204));
@@ -291,9 +302,9 @@ public class GuestDetails extends javax.swing.JFrame {
         checkDiving.setForeground(new java.awt.Color(204, 204, 204));
         checkDiving.setText("Diving");
 
-        jComboBox1.setBackground(new java.awt.Color(51, 51, 51));
-        jComboBox1.setFont(new java.awt.Font("Open Sans SemiBold", 0, 18)); // NOI18N
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Standard", "Gold", "Platinum" }));
+        comboPackage.setBackground(new java.awt.Color(51, 51, 51));
+        comboPackage.setFont(new java.awt.Font("Open Sans SemiBold", 0, 18)); // NOI18N
+        comboPackage.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Standard", "Gold", "Platinum" }));
 
         jSeparator1.setForeground(new java.awt.Color(204, 204, 204));
 
@@ -339,7 +350,7 @@ public class GuestDetails extends javax.swing.JFrame {
                     .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel7)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(comboPackage, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(txtEmail, javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(txtPhoneNo, javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(txtNic, javax.swing.GroupLayout.Alignment.LEADING)
@@ -357,12 +368,8 @@ public class GuestDetails extends javax.swing.JFrame {
                         .addComponent(txtSearchButton, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(txtSaveButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGap(0, 0, 0))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(checkSwim, javax.swing.GroupLayout.DEFAULT_SIZE, 185, Short.MAX_VALUE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                            .addComponent(txtSaveButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(checkSwim, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(37, 37, 37)
@@ -422,7 +429,7 @@ public class GuestDetails extends javax.swing.JFrame {
                 .addGap(25, 25, 25)
                 .addComponent(jLabel8)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(comboPackage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(25, 25, 25)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(checkBoatRide)
@@ -440,11 +447,9 @@ public class GuestDetails extends javax.swing.JFrame {
         header.setBackground(new java.awt.Color(255, 234, 0));
 
         jLabel9.setFont(new java.awt.Font("Open Sans SemiBold", 1, 18)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(0, 0, 0));
         jLabel9.setText("Pahalage Hotel Management System");
 
         minimize.setFont(new java.awt.Font("Open Sans SemiBold", 0, 48)); // NOI18N
-        minimize.setForeground(new java.awt.Color(0, 0, 0));
         minimize.setText("-");
         minimize.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -453,7 +458,6 @@ public class GuestDetails extends javax.swing.JFrame {
         });
 
         close.setFont(new java.awt.Font("Open Sans SemiBold", 0, 36)); // NOI18N
-        close.setForeground(new java.awt.Color(0, 0, 0));
         close.setText("x");
         close.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -495,8 +499,7 @@ public class GuestDetails extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 619, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 619, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addComponent(header, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
@@ -547,15 +550,25 @@ public class GuestDetails extends javax.swing.JFrame {
             String nic  = txtNic.getText();
             int phoneNumber = Integer.parseInt(txtPhoneNo.getText());
             String email = txtEmail.getText();
+             String packageType = comboPackage.getItemAt(comboPackage.getSelectedIndex());
+            boolean swim = checkSwim.isSelected();
+            boolean gym = checkGym.isSelected();
+            boolean diving = checkDiving.isSelected();
+            boolean boatride = checkBoatRide.isSelected();
  
             
-            pst = con.prepareStatement("insert into guestdetails (guestId, name, type, nic, phoneNumber,email) values (?,?,?,?,?,?) ");
+            pst = con.prepareStatement("insert into guestdetails (guestId, name, type, nic, phoneNumber,email, packageType, swimming, gym, diving, boatRide) values (?,?,?,?,?,?,?,?,?,?,?) ");
             pst.setString(1, gId);
             pst.setString(2, name);
             pst.setString(3, type);
             pst.setString(4, nic);
             pst.setInt(5, phoneNumber);
             pst.setString(6, email);
+            pst.setString(7,packageType);
+             pst.setBoolean(8, swim);
+            pst.setBoolean(9, gym);
+            pst.setBoolean(10, diving);
+            pst.setBoolean(11, boatride);
             
             
             int k = pst.executeUpdate();
@@ -619,7 +632,7 @@ public class GuestDetails extends javax.swing.JFrame {
         
     }//GEN-LAST:event_txtDeleteButtonActionPerformed
 
-    private void txtUpdatedButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUpdatedButtonActionPerformed
+    private void txtUpdatedButtonActionPerformed(java.awt.event.ActionEvent evt) {                                                 
         
                                                  
         
@@ -674,7 +687,7 @@ public class GuestDetails extends javax.swing.JFrame {
         }
         
         
-    }//GEN-LAST:event_txtUpdateActionPerformed
+    }                                         
 
     private void txtSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSaveActionPerformed
         
@@ -686,7 +699,7 @@ public class GuestDetails extends javax.swing.JFrame {
             String nic  = txtNic.getText();
             int phoneNumber = Integer.parseInt(txtPhoneNo.getText());
             String email = txtEmail.getText();
-            String packageType = comboPackage.getItemAt(comboPackage.getSelectedIndex());
+           String packageType = comboPackage.getItemAt(comboPackage.getSelectedIndex());
             boolean swim = checkSwim.isSelected();
             boolean gym = checkGym.isSelected();
             boolean diving = checkDiving.isSelected();
@@ -751,7 +764,7 @@ public class GuestDetails extends javax.swing.JFrame {
                 txtNic.setText(rs.getString(4));
                 txtPhoneNo.setText(rs.getString(5));  
                 txtEmail.setText(rs.getString(6));
-                comboPackage.setSelectedItem(rs.getString(7));
+               comboPackage.setSelectedItem(rs.getString(7));
                 checkSwim.setSelected(rs.getBoolean(8));
                 checkGym.setSelected(rs.getBoolean(9));
                 checkDiving.setSelected(rs.getBoolean(10));
@@ -819,9 +832,9 @@ public class GuestDetails extends javax.swing.JFrame {
     private javax.swing.JCheckBox checkGym;
     private javax.swing.JCheckBox checkSwim;
     private javax.swing.JLabel close;
+    private javax.swing.JComboBox<String> comboPackage;
     private javax.swing.JComboBox<String> comboType;
     private javax.swing.JPanel header;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
