@@ -28,9 +28,9 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="58" max="-2" attributes="0"/>
-              <Component id="jScrollPane1" min="-2" pref="675" max="-2" attributes="0"/>
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Component id="jScrollPane1" max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
           <Component id="header" alignment="0" max="32767" attributes="0"/>
       </Group>
@@ -60,11 +60,51 @@
         <Component class="javax.swing.JTable" name="tablePayment">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-              <Table columnCount="4" rowCount="0">
-                <Column editable="true" title="Payment Id" type="java.lang.Object"/>
-                <Column editable="true" title="Reservation Type" type="java.lang.Object"/>
-                <Column editable="true" title="Payment Method" type="java.lang.Object"/>
-                <Column editable="true" title="Email" type="java.lang.Object"/>
+              <Table columnCount="4" rowCount="9">
+                <Column editable="true" title="Payment Id" type="java.lang.Object">
+                  <Data value="null"/>
+                  <Data value="ads"/>
+                  <Data value="null"/>
+                  <Data value="null"/>
+                  <Data value="ads"/>
+                  <Data value="null"/>
+                  <Data value="null"/>
+                  <Data value="null"/>
+                  <Data value="null"/>
+                </Column>
+                <Column editable="true" title="Reservation Type" type="java.lang.Object">
+                  <Data value="acs"/>
+                  <Data value="null"/>
+                  <Data value="asacs"/>
+                  <Data value="null"/>
+                  <Data value="null"/>
+                  <Data value="null"/>
+                  <Data value="asd"/>
+                  <Data value="null"/>
+                  <Data value="sad"/>
+                </Column>
+                <Column editable="true" title="Payment Method" type="java.lang.Object">
+                  <Data value="null"/>
+                  <Data value="null"/>
+                  <Data value="null"/>
+                  <Data value="null"/>
+                  <Data value="asc"/>
+                  <Data value="null"/>
+                  <Data value="asd"/>
+                  <Data value="null"/>
+                  <Data value="null"/>
+                </Column>
+                <Column editable="true" title="Email" type="java.lang.Object">
+                  <Data value="null"/>
+                  <Data value="sdasd"/>
+                  <Data value="null"/>
+                  <Data value="null"/>
+                  <Data value="null"/>
+                  <Data value="null"/>
+                  <Data value="ad"/>
+                  <Data value="null"/>
+                  <Data value="null"/>
+                </Column>
               </Table>
             </Property>
             <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
@@ -606,7 +646,7 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
                   <Component id="jLabel9" min="-2" pref="450" max="-2" attributes="0"/>
-                  <EmptySpace pref="1206" max="32767" attributes="0"/>
+                  <EmptySpace pref="1356" max="32767" attributes="0"/>
                   <Component id="minimize" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="close" min="-2" max="-2" attributes="0"/>
