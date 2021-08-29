@@ -869,7 +869,9 @@ public class GuestDetails extends javax.swing.JFrame {
     }//GEN-LAST:event_txtNameActionPerformed
 
     private void btnHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHomeActionPerformed
-        // TODO add your handling code here:
+        Home home = new Home();
+        home.setVisible(true);
+        setVisible(false);
     }//GEN-LAST:event_btnHomeActionPerformed
 
     /**

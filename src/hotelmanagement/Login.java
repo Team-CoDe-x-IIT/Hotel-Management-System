@@ -6,6 +6,15 @@
 package hotelmanagement;
 
 import java.awt.Color;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -22,6 +31,11 @@ public class Login extends javax.swing.JFrame {
         Color col = new Color(255, 255, 200);
         getContentPane().setBackground(col);
     }
+    
+    Connection con;
+    PreparedStatement pst;
+    ResultSet rs;
+    Statement st;
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -38,11 +52,11 @@ public class Login extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
-        jTextField1 = new javax.swing.JTextField();
+        txtUserName = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jSeparator2 = new javax.swing.JSeparator();
-        jPasswordField1 = new javax.swing.JPasswordField();
-        kButton1 = new com.k33ptoo.components.KButton();
+        txtPassword = new javax.swing.JPasswordField();
+        btnLogin = new com.k33ptoo.components.KButton();
         image_lable = new javax.swing.JLabel();
         header = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
@@ -75,11 +89,11 @@ public class Login extends javax.swing.JFrame {
 
         jSeparator1.setForeground(new java.awt.Color(204, 204, 204));
 
-        jTextField1.setBackground(new java.awt.Color(51, 51, 51));
-        jTextField1.setFont(new java.awt.Font("Open Sans SemiBold", 0, 18)); // NOI18N
-        jTextField1.setForeground(new java.awt.Color(255, 234, 0));
-        jTextField1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        jTextField1.setCaretColor(new java.awt.Color(255, 234, 0));
+        txtUserName.setBackground(new java.awt.Color(51, 51, 51));
+        txtUserName.setFont(new java.awt.Font("Open Sans SemiBold", 0, 18)); // NOI18N
+        txtUserName.setForeground(new java.awt.Color(255, 234, 0));
+        txtUserName.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        txtUserName.setCaretColor(new java.awt.Color(255, 234, 0));
 
         jLabel4.setBackground(new java.awt.Color(204, 204, 204));
         jLabel4.setFont(new java.awt.Font("Open Sans SemiBold", 1, 18)); // NOI18N
@@ -88,27 +102,27 @@ public class Login extends javax.swing.JFrame {
 
         jSeparator2.setForeground(new java.awt.Color(204, 204, 204));
 
-        jPasswordField1.setBackground(new java.awt.Color(51, 51, 51));
-        jPasswordField1.setFont(new java.awt.Font("Open Sans SemiBold", 0, 18)); // NOI18N
-        jPasswordField1.setForeground(new java.awt.Color(255, 234, 0));
-        jPasswordField1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        jPasswordField1.setCaretColor(new java.awt.Color(255, 234, 0));
+        txtPassword.setBackground(new java.awt.Color(51, 51, 51));
+        txtPassword.setFont(new java.awt.Font("Open Sans SemiBold", 0, 18)); // NOI18N
+        txtPassword.setForeground(new java.awt.Color(255, 234, 0));
+        txtPassword.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        txtPassword.setCaretColor(new java.awt.Color(255, 234, 0));
 
-        kButton1.setBackground(new java.awt.Color(51, 51, 51));
-        kButton1.setForeground(new java.awt.Color(51, 51, 51));
-        kButton1.setText("Log in");
-        kButton1.setFont(new java.awt.Font("Open Sans SemiBold", 1, 24)); // NOI18N
-        kButton1.setkBorderRadius(50);
-        kButton1.setkEndColor(new java.awt.Color(255, 234, 0));
-        kButton1.setkForeGround(new java.awt.Color(51, 51, 51));
-        kButton1.setkHoverEndColor(new java.awt.Color(68, 68, 68));
-        kButton1.setkHoverForeGround(new java.awt.Color(255, 234, 0));
-        kButton1.setkHoverStartColor(new java.awt.Color(68, 68, 68));
-        kButton1.setkPressedColor(new java.awt.Color(102, 102, 102));
-        kButton1.setkStartColor(new java.awt.Color(255, 234, 0));
-        kButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnLogin.setBackground(new java.awt.Color(51, 51, 51));
+        btnLogin.setForeground(new java.awt.Color(51, 51, 51));
+        btnLogin.setText("Log in");
+        btnLogin.setFont(new java.awt.Font("Open Sans SemiBold", 1, 24)); // NOI18N
+        btnLogin.setkBorderRadius(50);
+        btnLogin.setkEndColor(new java.awt.Color(255, 234, 0));
+        btnLogin.setkForeGround(new java.awt.Color(51, 51, 51));
+        btnLogin.setkHoverEndColor(new java.awt.Color(68, 68, 68));
+        btnLogin.setkHoverForeGround(new java.awt.Color(255, 234, 0));
+        btnLogin.setkHoverStartColor(new java.awt.Color(68, 68, 68));
+        btnLogin.setkPressedColor(new java.awt.Color(102, 102, 102));
+        btnLogin.setkStartColor(new java.awt.Color(255, 234, 0));
+        btnLogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                kButton1ActionPerformed(evt);
+                btnLoginActionPerformed(evt);
             }
         });
 
@@ -127,13 +141,13 @@ public class Login extends javax.swing.JFrame {
                         .addGap(6, 6, 6)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jSeparator1)
-                            .addComponent(jTextField1)
+                            .addComponent(txtUserName)
                             .addComponent(jSeparator2, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jPasswordField1, javax.swing.GroupLayout.DEFAULT_SIZE, 322, Short.MAX_VALUE))))
+                            .addComponent(txtPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 322, Short.MAX_VALUE))))
                 .addContainerGap(87, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(kButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(152, 152, 152))
         );
         jPanel1Layout.setVerticalGroup(
@@ -146,17 +160,17 @@ public class Login extends javax.swing.JFrame {
                 .addGap(55, 55, 55)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtUserName, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(54, 54, 54)
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(2, 2, 2)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 65, Short.MAX_VALUE)
-                .addComponent(kButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(45, 45, 45))
         );
 
@@ -185,11 +199,9 @@ public class Login extends javax.swing.JFrame {
         header.setBackground(new java.awt.Color(255, 234, 0));
 
         jLabel5.setFont(new java.awt.Font("Open Sans SemiBold", 1, 18)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
         jLabel5.setText("Pahalage Hotel Management System");
 
         minimize.setFont(new java.awt.Font("Open Sans SemiBold", 0, 48)); // NOI18N
-        minimize.setForeground(new java.awt.Color(0, 0, 0));
         minimize.setText("-");
         minimize.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -198,7 +210,6 @@ public class Login extends javax.swing.JFrame {
         });
 
         close.setFont(new java.awt.Font("Open Sans SemiBold", 0, 36)); // NOI18N
-        close.setForeground(new java.awt.Color(0, 0, 0));
         close.setText("x");
         close.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -265,9 +276,33 @@ public class Login extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_closeMouseClicked
 
-    private void kButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_kButton1ActionPerformed
+    private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
+       
+         try {
+            Class.forName("com.mysql.jdbc.Driver");
+            con = DriverManager.getConnection("jdbc:mysql://localhost/hotelmanagementsystem", "root", "");
+            String sql = "SELECT * FROM login where userName = ? and password = ?";
+            pst = con.prepareStatement(sql);
+            pst.setString(1, txtUserName.getText());
+            pst.setString(2, txtPassword.getText());
+            rs = pst.executeQuery();
+            if (rs.next()){
+                JOptionPane.showMessageDialog(null, "UserName and Password Matched");
+                Home home = new Home();
+                home.setVisible(true);
+                setVisible(false);
+            }else{
+                JOptionPane.showMessageDialog(null, "UserName and Password Dont Matched");
+                txtPassword.setText("");
+                txtUserName.setText("");
+            }
+            con.close();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(GuestDetails.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(GuestDetails.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnLoginActionPerformed
 
     /**
      * @param args the command line arguments
@@ -306,6 +341,7 @@ public class Login extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private com.k33ptoo.components.KButton btnLogin;
     private javax.swing.JLabel close;
     private javax.swing.JPanel header;
     private javax.swing.JLabel image_lable;
@@ -315,12 +351,11 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JTextField jTextField1;
-    private com.k33ptoo.components.KButton kButton1;
     private javax.swing.JPanel loginContainer;
     private javax.swing.JLabel minimize;
+    private javax.swing.JPasswordField txtPassword;
+    private javax.swing.JTextField txtUserName;
     // End of variables declaration//GEN-END:variables
 }
