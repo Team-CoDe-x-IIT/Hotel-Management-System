@@ -6,6 +6,8 @@
 package hotelmanagement;
 
 import java.awt.Color;
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -14,6 +16,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
@@ -31,6 +34,13 @@ public class Login extends javax.swing.JFrame {
         initComponents();
         Color col = new Color(255, 255, 200);
         getContentPane().setBackground(col);
+        
+        
+//        ImageIcon imageIcon1 = new ImageIcon(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Images/new_background.png")));
+//        Image img1 = imageIcon1.getImage();
+//        Image imgScale1 = img1.getScaledInstance(jLabel6.getWidth(), jLabel6.getHeight(), Image.SCALE_SMOOTH);
+//        ImageIcon scaleIcon1 = new ImageIcon(imgScale1);
+//        jLabel6.setIcon(scaleIcon1);
         
         setExtendedState(JFrame.MAXIMIZED_BOTH);
     }
@@ -216,6 +226,7 @@ public class Login extends javax.swing.JFrame {
 
         close.setFont(new java.awt.Font("Open Sans SemiBold", 0, 36)); // NOI18N
         close.setForeground(new java.awt.Color(51, 51, 51));
+        close.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         close.setText("x");
         close.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -230,11 +241,10 @@ public class Login extends javax.swing.JFrame {
             .addGroup(headerLayout.createSequentialGroup()
                 .addGap(26, 26, 26)
                 .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 450, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 962, Short.MAX_VALUE)
                 .addComponent(minimize)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(close)
-                .addGap(21, 21, 21))
+                .addComponent(close, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         headerLayout.setVerticalGroup(
             headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

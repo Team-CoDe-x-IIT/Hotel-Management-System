@@ -28,12 +28,45 @@ public class Home extends javax.swing.JFrame {
 //        frame = new JFrame("Logo");
         
         initComponents();
-        ImageIcon logoImage = new ImageIcon(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Images/logo.png")));
-        Image img = logoImage.getImage();
+        ImageIcon imageIcon = new ImageIcon(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Images/logo.png")));
+        Image img = imageIcon.getImage();
         Image imgScale = img.getScaledInstance(logo.getWidth(), logo.getHeight(), Image.SCALE_SMOOTH);
         ImageIcon scaleIcon = new ImageIcon(imgScale);
         logo.setIcon(scaleIcon);
         
+        ImageIcon imageIcon1 = new ImageIcon(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Images/new_background.png")));
+        Image img1 = imageIcon1.getImage();
+        Image imgScale1 = img1.getScaledInstance(background.getWidth(), background.getHeight(), Image.SCALE_SMOOTH);
+        ImageIcon scaleIcon1 = new ImageIcon(imgScale1);
+        background.setIcon(scaleIcon1);
+//        
+        imageIcon = new ImageIcon(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Images/guest.png")));
+        img = imageIcon.getImage();
+        imgScale = img.getScaledInstance(guestIcon.getWidth(), guestIcon.getHeight(), Image.SCALE_SMOOTH);
+        scaleIcon = new ImageIcon(imgScale);
+        guestIcon.setIcon(scaleIcon);
+//        
+
+        imageIcon = new ImageIcon(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Images/reception.png")));
+        img = imageIcon.getImage();
+        imgScale = img.getScaledInstance(receptionIcon.getWidth(), receptionIcon.getHeight(), Image.SCALE_SMOOTH);
+        scaleIcon = new ImageIcon(imgScale);
+        receptionIcon.setIcon(scaleIcon);
+        
+        
+        imageIcon = new ImageIcon(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Images/payment-method.png")));
+        img = imageIcon.getImage();
+        imgScale = img.getScaledInstance(paymentIcon.getWidth(), paymentIcon.getHeight(), Image.SCALE_SMOOTH);
+        scaleIcon = new ImageIcon(imgScale);
+        paymentIcon.setIcon(scaleIcon);
+//        
+                
+        imageIcon = new ImageIcon(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Images/service.png")));
+        img = imageIcon.getImage();
+        imgScale = img.getScaledInstance(serviceIcon.getWidth(), serviceIcon.getHeight(), Image.SCALE_SMOOTH);
+        scaleIcon = new ImageIcon(imgScale);
+        serviceIcon.setIcon(scaleIcon);
+             
         setExtendedState(JFrame.MAXIMIZED_BOTH);
     }
 
@@ -51,11 +84,16 @@ public class Home extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         minimize = new javax.swing.JLabel();
         close = new javax.swing.JLabel();
-        logo = new javax.swing.JLabel();
+        background = new javax.swing.JLabel();
         kButton1 = new com.k33ptoo.components.KButton();
-        kButton2 = new com.k33ptoo.components.KButton();
         kButton3 = new com.k33ptoo.components.KButton();
+        kButton2 = new com.k33ptoo.components.KButton();
         kButton4 = new com.k33ptoo.components.KButton();
+        paymentIcon = new javax.swing.JLabel();
+        guestIcon = new javax.swing.JLabel();
+        receptionIcon = new javax.swing.JLabel();
+        logo = new javax.swing.JLabel();
+        serviceIcon = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -112,9 +150,6 @@ public class Home extends javax.swing.JFrame {
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
-        logo.setBackground(new java.awt.Color(255, 153, 51));
-        logo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-
         kButton1.setBackground(new java.awt.Color(51, 51, 51));
         kButton1.setForeground(new java.awt.Color(51, 51, 51));
         kButton1.setText("Guest Management");
@@ -130,24 +165,6 @@ public class Home extends javax.swing.JFrame {
         kButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 kButton1ActionPerformed(evt);
-            }
-        });
-
-        kButton2.setBackground(new java.awt.Color(51, 51, 51));
-        kButton2.setForeground(new java.awt.Color(51, 51, 51));
-        kButton2.setText("Reservation Management");
-        kButton2.setFont(new java.awt.Font("Open Sans SemiBold", 1, 24)); // NOI18N
-        kButton2.setkBorderRadius(50);
-        kButton2.setkEndColor(new java.awt.Color(51, 51, 51));
-        kButton2.setkForeGround(new java.awt.Color(255, 234, 0));
-        kButton2.setkHoverEndColor(new java.awt.Color(255, 234, 0));
-        kButton2.setkHoverForeGround(new java.awt.Color(68, 68, 68));
-        kButton2.setkHoverStartColor(new java.awt.Color(255, 234, 0));
-        kButton2.setkPressedColor(new java.awt.Color(255, 196, 0));
-        kButton2.setkStartColor(new java.awt.Color(51, 51, 51));
-        kButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                kButton2ActionPerformed(evt);
             }
         });
 
@@ -169,6 +186,24 @@ public class Home extends javax.swing.JFrame {
             }
         });
 
+        kButton2.setBackground(new java.awt.Color(51, 51, 51));
+        kButton2.setForeground(new java.awt.Color(51, 51, 51));
+        kButton2.setText("Reservation Management");
+        kButton2.setFont(new java.awt.Font("Open Sans SemiBold", 1, 24)); // NOI18N
+        kButton2.setkBorderRadius(50);
+        kButton2.setkEndColor(new java.awt.Color(51, 51, 51));
+        kButton2.setkForeGround(new java.awt.Color(255, 234, 0));
+        kButton2.setkHoverEndColor(new java.awt.Color(255, 234, 0));
+        kButton2.setkHoverForeGround(new java.awt.Color(68, 68, 68));
+        kButton2.setkHoverStartColor(new java.awt.Color(255, 234, 0));
+        kButton2.setkPressedColor(new java.awt.Color(255, 196, 0));
+        kButton2.setkStartColor(new java.awt.Color(51, 51, 51));
+        kButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                kButton2ActionPerformed(evt);
+            }
+        });
+
         kButton4.setBackground(new java.awt.Color(51, 51, 51));
         kButton4.setForeground(new java.awt.Color(51, 51, 51));
         kButton4.setText("Staff Management");
@@ -187,43 +222,87 @@ public class Home extends javax.swing.JFrame {
             }
         });
 
+        logo.setBackground(new java.awt.Color(255, 153, 51));
+        logo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(header, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(109, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(kButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 376, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(kButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 376, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(140, 140, 140)
-                .addComponent(logo, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(140, 140, 140)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(200, 200, 200)
+                        .addComponent(guestIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 46, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(kButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 376, Short.MAX_VALUE)
+                                .addComponent(kButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(receptionIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(59, 59, 59)))))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(kButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 376, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(kButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 376, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(109, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(140, 140, 140)
+                        .addComponent(logo, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(140, 140, 140)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(kButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 376, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(kButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 376, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(195, 195, 195)
+                                .addComponent(serviceIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap(120, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGap(831, 831, 831)
+                        .addComponent(paymentIcon, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(221, 221, 221))))
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(background, javax.swing.GroupLayout.PREFERRED_SIZE, 1760, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(kButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addComponent(header, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(guestIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(paymentIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(30, 30, 30)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(header, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(kButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(kButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 204, Short.MAX_VALUE)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(kButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(kButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(399, 399, 399)
-                                .addComponent(kButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(275, 275, 275)
-                                .addComponent(logo, javax.swing.GroupLayout.PREFERRED_SIZE, 386, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(330, Short.MAX_VALUE))
+                                .addGap(136, 136, 136)
+                                .addComponent(serviceIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(receptionIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(kButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(kButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(19, 19, 19)
+                        .addComponent(logo, javax.swing.GroupLayout.PREFERRED_SIZE, 386, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(221, 221, 221))
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(background, javax.swing.GroupLayout.PREFERRED_SIZE, 1150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -313,7 +392,9 @@ public class Home extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel background;
     private javax.swing.JLabel close;
+    private javax.swing.JLabel guestIcon;
     private javax.swing.JPanel header;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
@@ -323,6 +404,9 @@ public class Home extends javax.swing.JFrame {
     private com.k33ptoo.components.KButton kButton4;
     private javax.swing.JLabel logo;
     private javax.swing.JLabel minimize;
+    private javax.swing.JLabel paymentIcon;
+    private javax.swing.JLabel receptionIcon;
+    private javax.swing.JLabel serviceIcon;
     // End of variables declaration//GEN-END:variables
 
 //      public void scaleImage() {
