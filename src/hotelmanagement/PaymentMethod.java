@@ -153,6 +153,10 @@ public class PaymentMethod extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         minimize = new javax.swing.JLabel();
         close = new javax.swing.JLabel();
+        kButton2 = new com.k33ptoo.components.KButton();
+        kButton4 = new com.k33ptoo.components.KButton();
+        kButton3 = new com.k33ptoo.components.KButton();
+        kButton1 = new com.k33ptoo.components.KButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Payment Method");
@@ -317,7 +321,7 @@ public class PaymentMethod extends javax.swing.JFrame {
 
         btnHome1.setBackground(new java.awt.Color(51, 51, 51));
         btnHome1.setForeground(new java.awt.Color(51, 51, 51));
-        btnHome1.setText("Payment Method");
+        btnHome1.setText("Payment Calculation");
         btnHome1.setFont(new java.awt.Font("Open Sans SemiBold", 0, 18)); // NOI18N
         btnHome1.setkBackGroundColor(new java.awt.Color(255, 234, 0));
         btnHome1.setkBorderRadius(40);
@@ -430,6 +434,7 @@ public class PaymentMethod extends javax.swing.JFrame {
 
         close.setFont(new java.awt.Font("Open Sans SemiBold", 0, 36)); // NOI18N
         close.setForeground(new java.awt.Color(51, 51, 51));
+        close.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         close.setText("x");
         close.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -447,8 +452,7 @@ public class PaymentMethod extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 1356, Short.MAX_VALUE)
                 .addComponent(minimize)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(close)
-                .addGap(21, 21, 21))
+                .addComponent(close, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         headerLayout.setVerticalGroup(
             headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -463,27 +467,119 @@ public class PaymentMethod extends javax.swing.JFrame {
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
+        kButton2.setBackground(new java.awt.Color(51, 51, 51));
+        kButton2.setForeground(new java.awt.Color(255, 234, 0));
+        kButton2.setText("Reservation Management");
+        kButton2.setFont(new java.awt.Font("Open Sans SemiBold", 1, 24)); // NOI18N
+        kButton2.setkBackGroundColor(new java.awt.Color(51, 51, 51));
+        kButton2.setkBorderRadius(50);
+        kButton2.setkEndColor(new java.awt.Color(51, 51, 51));
+        kButton2.setkForeGround(new java.awt.Color(255, 234, 0));
+        kButton2.setkHoverColor(new java.awt.Color(51, 51, 51));
+        kButton2.setkHoverEndColor(new java.awt.Color(255, 234, 0));
+        kButton2.setkHoverForeGround(new java.awt.Color(68, 68, 68));
+        kButton2.setkHoverStartColor(new java.awt.Color(255, 234, 0));
+        kButton2.setkPressedColor(new java.awt.Color(255, 196, 0));
+        kButton2.setkStartColor(new java.awt.Color(51, 51, 51));
+        kButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                kButton2ActionPerformed(evt);
+            }
+        });
+
+        kButton4.setBackground(new java.awt.Color(51, 51, 51));
+        kButton4.setForeground(new java.awt.Color(51, 51, 51));
+        kButton4.setText("Staff Management");
+        kButton4.setFont(new java.awt.Font("Open Sans SemiBold", 1, 24)); // NOI18N
+        kButton4.setkBorderRadius(50);
+        kButton4.setkEndColor(new java.awt.Color(51, 51, 51));
+        kButton4.setkForeGround(new java.awt.Color(255, 234, 0));
+        kButton4.setkHoverEndColor(new java.awt.Color(255, 234, 0));
+        kButton4.setkHoverForeGround(new java.awt.Color(68, 68, 68));
+        kButton4.setkHoverStartColor(new java.awt.Color(255, 234, 0));
+        kButton4.setkPressedColor(new java.awt.Color(255, 196, 0));
+        kButton4.setkStartColor(new java.awt.Color(51, 51, 51));
+        kButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                kButton4ActionPerformed(evt);
+            }
+        });
+
+        kButton3.setBackground(new java.awt.Color(51, 51, 51));
+        kButton3.setForeground(new java.awt.Color(51, 51, 51));
+        kButton3.setText("Payment Management");
+        kButton3.setFont(new java.awt.Font("Open Sans SemiBold", 1, 24)); // NOI18N
+        kButton3.setkBorderRadius(50);
+        kButton3.setkEndColor(new java.awt.Color(255, 234, 0));
+        kButton3.setkForeGround(new java.awt.Color(68, 68, 68));
+        kButton3.setkHoverEndColor(new java.awt.Color(255, 234, 0));
+        kButton3.setkHoverForeGround(new java.awt.Color(68, 68, 68));
+        kButton3.setkHoverStartColor(new java.awt.Color(255, 234, 0));
+        kButton3.setkPressedColor(new java.awt.Color(255, 196, 0));
+        kButton3.setkStartColor(new java.awt.Color(255, 234, 0));
+        kButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                kButton3ActionPerformed(evt);
+            }
+        });
+
+        kButton1.setBackground(new java.awt.Color(51, 51, 51));
+        kButton1.setForeground(new java.awt.Color(51, 51, 51));
+        kButton1.setText("Guest Management");
+        kButton1.setFont(new java.awt.Font("Open Sans SemiBold", 1, 24)); // NOI18N
+        kButton1.setkBorderRadius(50);
+        kButton1.setkEndColor(new java.awt.Color(51, 51, 51));
+        kButton1.setkForeGround(new java.awt.Color(255, 234, 0));
+        kButton1.setkHoverEndColor(new java.awt.Color(255, 234, 0));
+        kButton1.setkHoverForeGround(new java.awt.Color(68, 68, 68));
+        kButton1.setkHoverStartColor(new java.awt.Color(255, 234, 0));
+        kButton1.setkPressedColor(new java.awt.Color(255, 196, 0));
+        kButton1.setkStartColor(new java.awt.Color(51, 51, 51));
+        kButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                kButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(header, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jScrollPane1))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 117, Short.MAX_VALUE)
+                        .addComponent(kButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 376, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(50, 50, 50)
+                        .addComponent(kButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 376, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(50, 50, 50)
+                        .addComponent(kButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 376, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(50, 50, 50)
+                        .addComponent(kButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 376, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 117, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addComponent(header, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(header, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(60, 60, 60)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jScrollPane1))
-                .addContainerGap())
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(kButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(kButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(kButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(kButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(28, Short.MAX_VALUE))
         );
 
         pack();
@@ -642,10 +738,35 @@ public class PaymentMethod extends javax.swing.JFrame {
     }//GEN-LAST:event_btnHomeActionPerformed
 
     private void btnHome1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHome1ActionPerformed
-       PaymentMethod paymentMethod = new PaymentMethod();
-       paymentMethod.setVisible(true);
+       PaymentCalculation paymentCalculation = new PaymentCalculation();
+       paymentCalculation.setVisible(true);
         setVisible(false);
     }//GEN-LAST:event_btnHome1ActionPerformed
+
+    private void kButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kButton2ActionPerformed
+        RoomReservation roomReservation = new RoomReservation();
+        roomReservation.setVisible(true);
+        setVisible(false);
+    }//GEN-LAST:event_kButton2ActionPerformed
+
+    private void kButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kButton4ActionPerformed
+        StaffRegistration staffRegistration = new StaffRegistration();
+        staffRegistration.setVisible(true);
+        setVisible(false);
+    }//GEN-LAST:event_kButton4ActionPerformed
+
+    private void kButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kButton3ActionPerformed
+        PaymentMethod paymentMethod = new PaymentMethod();
+        paymentMethod.setVisible(true);
+        setVisible(false);
+    }//GEN-LAST:event_kButton3ActionPerformed
+
+    private void kButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kButton1ActionPerformed
+
+        GuestDetails guestDetails = new GuestDetails();
+        guestDetails.setVisible(true);
+        setVisible(false);
+    }//GEN-LAST:event_kButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -700,6 +821,10 @@ public class PaymentMethod extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator6;
     private javax.swing.JSeparator jSeparator7;
+    private com.k33ptoo.components.KButton kButton1;
+    private com.k33ptoo.components.KButton kButton2;
+    private com.k33ptoo.components.KButton kButton3;
+    private com.k33ptoo.components.KButton kButton4;
     private javax.swing.JLabel minimize;
     private javax.swing.JTable tablePayment;
     private com.k33ptoo.components.KButton txtDelete;
