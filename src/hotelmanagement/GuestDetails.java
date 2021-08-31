@@ -34,10 +34,10 @@ public class GuestDetails extends javax.swing.JFrame {
      */
     public GuestDetails() {
         initComponents();
-//        Connect() ;
+        Connect() ;
         Color col = new Color(255, 255, 200);
         getContentPane().setBackground(col);
-//        showUser();
+        showUser();
 
 
         guestTable.getTableHeader().setFont(new Font("Open Sans SemiBold", Font.PLAIN, 18));
