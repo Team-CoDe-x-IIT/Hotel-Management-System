@@ -32,8 +32,8 @@ public class StaffRegistration extends javax.swing.JFrame {
      */
     public StaffRegistration() {
         initComponents();
-//        Connect();
-//        showStaff();
+        Connect();
+        showStaff();
        
         Color col = new Color(255, 255, 200);
         getContentPane().setBackground(col);
