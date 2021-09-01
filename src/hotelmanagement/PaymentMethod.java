@@ -321,7 +321,7 @@ public class PaymentMethod extends javax.swing.JFrame {
 
         btnHome1.setBackground(new java.awt.Color(51, 51, 51));
         btnHome1.setForeground(new java.awt.Color(51, 51, 51));
-        btnHome1.setText("Payment Method");
+        btnHome1.setText("Payment Calculation");
         btnHome1.setFont(new java.awt.Font("Open Sans SemiBold", 0, 18)); // NOI18N
         btnHome1.setkBackGroundColor(new java.awt.Color(255, 234, 0));
         btnHome1.setkBorderRadius(40);
@@ -738,8 +738,8 @@ public class PaymentMethod extends javax.swing.JFrame {
     }//GEN-LAST:event_btnHomeActionPerformed
 
     private void btnHome1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHome1ActionPerformed
-       PaymentMethod paymentMethod = new PaymentMethod();
-       paymentMethod.setVisible(true);
+       PaymentCalculation paymentCalculation = new PaymentCalculation();
+       paymentCalculation.setVisible(true);
         setVisible(false);
     }//GEN-LAST:event_btnHome1ActionPerformed
 
