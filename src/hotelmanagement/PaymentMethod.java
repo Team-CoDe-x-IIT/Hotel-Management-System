@@ -32,8 +32,8 @@ public class PaymentMethod extends javax.swing.JFrame {
      */
     public PaymentMethod() {
         initComponents();
-//        Connect();
-//        showPayment();
+        Connect();
+        showPayment();
         
         Color col = new Color(255, 255, 200);
         getContentPane().setBackground(col);

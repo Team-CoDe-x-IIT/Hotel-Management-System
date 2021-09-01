@@ -35,9 +35,9 @@ public class HallReservation extends javax.swing.JFrame {
         initComponents();
         Color col = new Color(255, 255, 200);
         getContentPane().setBackground(col);
-//        Connect();
-//        LoadProductNo();
-//        showHall();
+        Connect();
+        LoadProductNo();
+        showHall();
 
         tableHallReservation.getTableHeader().setFont(new Font("Open Sans SemiBold", Font.PLAIN, 18));
         tableHallReservation.getTableHeader().setOpaque(false);
